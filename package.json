@@ -1,16 +1,63 @@
 {
   "name": "nice.me",
   "version": "1.0.0",
+  "description": "nice.me blog",
+  "author": {
+    "name": "nice",
+    "email": "linyj_work@163.com",
+    "url": "https://nice.me"
+  },
   "private": true,
+  "license": "MIT",
   "scripts": {
-    "dev": "nuxt",
+    "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server --experimental-modules",
     "build": "nuxt build",
-    "start": "nuxt start",
-    "generate": "nuxt generate"
+    "start": "cross-env NODE_ENV=production node server/index.js",
+    "generate": "nuxt generate",
+    "lint": "eslint --ext .ts,.js,.vue --ignore-path .eslintignore ."
   },
   "dependencies": {
+    "@nuxtjs/axios": "^5.9.5",
+    "@nuxtjs/component-cache": "^1.1.5",
+    "@nuxtjs/pwa": "^3.0.0-beta.20",
+    "@nuxtjs/style-resources": "^1.0.0",
+    "@vue/composition-api": "^0.3.4",
+    "amplitudejs": "^5.0.3",
+    "bezier-easing": "^2.1.0",
     "core-js": "^3.6.5",
-    "nuxt": "^2.14.5"
+    "nuxt": "^2.14.5",
+    "request": "^2.88.0",
+    "socket.io": "^2.3.0",
+    "swiper": "^5.3.6",
+    "ua-parser-js": "^0.7.21",
+    "cross-env": "^7.0.0",
+    "emoji-233333": "^0.3.0",
+    "marked": "0.6.3",
+    "esm": "^3.2.25",
+    "gravatar": "^1.8.0",
+    "express": "^4.17.1",
+    "favico.js": "^0.3.10",
+    "fs-extra": "^8.1.0",
+    "highlight.js": "^9.18.1",
+    "intersection-observer": "^0.7.0",
+    "lodash": "^4.17.15",
+    "sticky-events": "^3.1.1",
+    "vue-script2": "^2.1.0",
+    "vue-analytics": "^5.22.1",
+    "vue-awesome-swiper": "^4.1.0",
+    "vue-google-adsense": "^1.8.1",
+    "lozad": "^1.14.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@nuxt/typescript-build": "^0.6.0",
+    "@nuxtjs/eslint-config-typescript": "^1.0.0",
+    "@types/gravatar": "^1.8.0",
+    "@types/lozad": "^1.9.0",
+    "@types/swiper": "^5.2.1",
+    "@types/ua-parser-js": "^0.7.33",
+    "eslint": "^6.8.0",
+    "node-sass": "^4.13.1",
+    "nodemon": "^2.0.2",
+    "sass-loader": "^8.0.2"
+  }
 }
