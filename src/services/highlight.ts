@@ -1,7 +1,7 @@
 /**
  * @file highlight.js
  * @module service/highlight
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 // MARK: vite.config.js

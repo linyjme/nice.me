@@ -1,7 +1,7 @@
 /**
  * @file Music player
  * @module service/music
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  * @document https://521dimensions.com/open-source/amplitudejs/docs
  */
 

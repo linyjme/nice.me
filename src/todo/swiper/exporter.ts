@@ -1,7 +1,7 @@
 /**
  * @file vue-awesome-swiper
  * @module exporter
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import { App, Plugin } from 'vue'

@@ -1,7 +1,7 @@
 /**
  * @file Editable element util
  * @module util/editable
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 export const focusPosition = (element: HTMLElement, position: number = 0) => {

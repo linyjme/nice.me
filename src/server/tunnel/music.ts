@@ -1,7 +1,7 @@
 /**
  * @file BFF Server music
  * @module server/music
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import { Middleware } from 'koa'

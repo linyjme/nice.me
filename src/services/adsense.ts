@@ -1,7 +1,7 @@
 /**
  * @file Google Adsense
  * @module service/adsense
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import { App, defineComponent, h } from 'vue'

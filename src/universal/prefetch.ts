@@ -1,7 +1,7 @@
 /**
  * @file App universal prefetch
  * @module app/universal/prefetch
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import { onBeforeMount, getCurrentInstance, ComponentOptions } from 'vue'

@@ -1,7 +1,7 @@
 /**
  * @file vue-awesome-swiper
  * @module utils
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 export const littleCamelCase = (string: string): string => {

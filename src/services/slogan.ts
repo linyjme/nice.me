@@ -1,7 +1,7 @@
 /**
  * @file Slogan consoler
  * @module service/slogan
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import { I18n } from '/@/services/i18n'

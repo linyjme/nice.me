@@ -1,7 +1,7 @@
 /**
  * @file socket 服务
  * @module service/socket.io
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import socketIO from 'socket.io-client'

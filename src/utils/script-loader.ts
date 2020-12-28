@@ -1,7 +1,7 @@
 /**
  * @file Script loader
  * @module util/script-loader
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 export interface ILoaderOption extends Partial<HTMLScriptElement> {

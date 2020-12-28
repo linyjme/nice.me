@@ -1,7 +1,7 @@
 /**
  * @file App server entry
  * @module app/server
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import path from 'path'

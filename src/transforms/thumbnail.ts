@@ -1,7 +1,7 @@
 /**
  * @file Thumbnail transformer
  * @module transformer/thumbnail
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import gravatar from 'gravatar'

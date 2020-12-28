@@ -1,7 +1,7 @@
 /**
  * @file I18n keys
  * @module i18n/key
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 export enum LANGUAGE_KEYS {

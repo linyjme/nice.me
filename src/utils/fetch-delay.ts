@@ -1,7 +1,7 @@
 /**
  * @file 模拟延时器
  * @module util/fetch-delay
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import { DEFAULT_FETCH_DELAY } from '/@/config/app.config'

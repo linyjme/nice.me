@@ -1,7 +1,7 @@
 /**
  * @file App local global state
  * @module app/global-state
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import { App, inject, ref, computed, reactive, readonly } from 'vue'

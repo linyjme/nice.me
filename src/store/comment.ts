@@ -1,7 +1,7 @@
 /**
  * @file Comment state
  * @module store/comment
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import { Module, MutationTree, ActionTree } from 'vuex'

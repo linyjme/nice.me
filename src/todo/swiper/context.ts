@@ -1,7 +1,7 @@
 /**
  * @file vue-awesome-swiper
  * @module context
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import { ref, readonly, isReadonly, Ref } from 'vue'

@@ -1,7 +1,7 @@
 /**
  * @file 复制拦截器
  * @module service/copyright
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import { META } from '/@/config/app.config'

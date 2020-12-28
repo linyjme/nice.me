@@ -1,7 +1,7 @@
 /**
  * @file Environment
  * @module environment
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 export enum NodeEnv {

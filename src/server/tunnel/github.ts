@@ -1,7 +1,7 @@
 /**
  * @file BFF Server github
  * @module server/github
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import axios from 'axios'

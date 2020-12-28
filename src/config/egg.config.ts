@@ -1,7 +1,7 @@
 /**
  * @file Surpres config
  * @module config/egg
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 export const titles = [

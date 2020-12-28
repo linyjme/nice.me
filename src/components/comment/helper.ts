@@ -1,6 +1,6 @@
 /**
  * @file comment helper
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import { email as emailRegex } from '/@/constants/regex'

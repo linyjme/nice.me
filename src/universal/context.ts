@@ -1,7 +1,7 @@
 /**
  * @file App universal context
  * @module app/universal/context
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import { GlobalRawState } from '/@/state'

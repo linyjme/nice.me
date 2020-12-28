@@ -1,7 +1,7 @@
 /**
  * @file Url transformer
  * @module transformer/url
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import API_CONFIG from '/@/config/api.config'

@@ -3,7 +3,7 @@
  * @description only render on client (browser)
  * @description Fork from: https://github.com/egoist/vue-client-only/blob/master/src/index.js
  * @description Fork from: https://github.com/kadirahq/react-no-ssr/blob/master/src/index.js
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import { defineComponent, ref, h, onMounted, Transition, cloneVNode } from 'vue'

@@ -1,7 +1,7 @@
 /**
  * @file Root store
  * @module store
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import { createStore, useStore as useVuexStore } from 'vuex'

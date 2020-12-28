@@ -1,7 +1,7 @@
 /**
  * @file Clipboard util
  * @module util/clipboard
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 declare global {

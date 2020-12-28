@@ -1,7 +1,7 @@
 /**
  * @file polyfill
  * @module app/polyfill
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import 'intersection-observer'

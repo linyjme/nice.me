@@ -1,7 +1,7 @@
 /**
  * @file App state transformer
  * @module transformer/state
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import { ref, onMounted, watchEffect } from 'vue'

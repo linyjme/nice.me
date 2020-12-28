@@ -1,7 +1,7 @@
 /**
  * @file Article state
  * @module store/article
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import { Module, MutationTree, ActionTree } from 'vuex'

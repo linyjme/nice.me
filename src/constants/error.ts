@@ -1,7 +1,7 @@
 /**
  * @file Error constant
  * @module constant/error
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 export const BAD_REQUEST = 400

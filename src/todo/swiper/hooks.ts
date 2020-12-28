@@ -1,7 +1,7 @@
 /**
  * @file vue-awesome-swiper
  * @module hooks
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import { inject } from 'vue'

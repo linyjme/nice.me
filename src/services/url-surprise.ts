@@ -1,7 +1,7 @@
 /**
  * @file Url surprise
  * @module service/url-surprise
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import { Router } from 'vue-router'

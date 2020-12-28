@@ -1,7 +1,7 @@
 /**
  * @file popup image component
  * @module service/popup/image-component
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
 */
 
 import { h, defineComponent } from 'vue'

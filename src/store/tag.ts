@@ -1,7 +1,7 @@
 /**
  * @file Tags state
  * @module store/tag
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import { Module, MutationTree, GetterTree, ActionTree } from 'vuex'

@@ -1,7 +1,7 @@
 /**
  * @file Route transformer
  * @module transformer/route
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import { RouteName, CategorySlug } from '/@/router'

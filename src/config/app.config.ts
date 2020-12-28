@@ -1,7 +1,7 @@
 /**
  * @file App config
  * @module config/app
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 export const DEFAULT_FETCH_DELAY = 468

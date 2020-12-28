@@ -1,7 +1,7 @@
 /**
  * @file app layout updater
  * @module service/layout
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import { RouteMeta } from 'vue-router'

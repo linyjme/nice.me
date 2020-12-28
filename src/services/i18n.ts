@@ -1,7 +1,7 @@
 /**
  * @file i18n service
  * @module service/i18n
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import { App, inject, ref, watch, readonly, defineComponent, WatchStopHandle, ObjectDirective } from 'vue'

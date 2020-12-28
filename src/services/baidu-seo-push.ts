@@ -1,7 +1,7 @@
 /**
  * @file 客户端百度 SEO 服务
  * @module service/baidu-seo-push
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import { Router } from 'vue-router'

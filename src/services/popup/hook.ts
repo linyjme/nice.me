@@ -1,7 +1,7 @@
 /**
  * @file popup hook
  * @module service/popup/hook
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
 */
 
 import { inject, onMounted } from 'vue'

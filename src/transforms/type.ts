@@ -1,7 +1,7 @@
 /**
  * @file Type transformer
  * @module transformer/type
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 export type WithoutInstallStore<S> = S extends Plugin

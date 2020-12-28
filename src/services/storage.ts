@@ -1,7 +1,7 @@
 /**
  * @file 本机数据状态
  * @module service/storage
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import { ref, watchEffect } from 'vue'

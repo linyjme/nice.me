@@ -1,7 +1,7 @@
 /**
  * @file app interior extends
  * @module service/interior
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import { App } from 'vue'

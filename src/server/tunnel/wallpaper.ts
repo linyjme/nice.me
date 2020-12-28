@@ -1,7 +1,7 @@
 /**
  * @file BFF Server wallpaper
  * @module server/wallpaper
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import { Middleware } from 'koa'

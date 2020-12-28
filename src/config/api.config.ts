@@ -1,7 +1,7 @@
 /**
  * @file Api config
  * @module config/api
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import { isDev, isSPA, isServer } from '/@/environment'

@@ -1,7 +1,7 @@
 /**
  * @file Network
  * @module service/network
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import axios from 'axios'

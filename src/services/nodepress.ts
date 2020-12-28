@@ -1,7 +1,7 @@
 /**
  * @file HTTP requester service
  * @module service/http
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import axios, { AxiosInstance } from 'axios'

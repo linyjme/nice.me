@@ -1,7 +1,7 @@
 /**
  * @file vue-awesome-swiper
  * @module event
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import Swiper from 'swiper'

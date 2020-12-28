@@ -1,18 +1,18 @@
 {
-  "name": "surmon.me",
-  "version": "3.0.3",
-  "description": "Surmon.me blog",
+  "name": "nice.me",
+  "version": "2.0.1",
+  "description": "Nice.me blog",
   "author": {
-    "name": "Surmon",
-    "email": "surmon@foxmail.com",
-    "url": "https://surmon.me"
+    "name": "Nice",
+    "email": "linyj_work@163.com",
+    "url": "https://nice.me"
   },
   "license": "MIT",
   "private": false,
-  "homepage": "https://github.com/surmon-china/surmon.me",
+  "homepage": "https://github.com/Linyj/Linyj.github.io",
   "repository": {
     "type": "git",
-    "url": "https://github.com/surmon-china/surmon.me"
+    "url": "https://github.com/Linyj/Linyj.github.io"
   },
   "scripts": {
     "dev:spa": "vite",

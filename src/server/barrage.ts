@@ -1,7 +1,7 @@
 /**
  * @file BFF Barrage server
  * @module server/barrage
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import path from 'path'

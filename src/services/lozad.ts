@@ -1,7 +1,7 @@
 /**
  * @file 懒加载
  * @module service/lozad
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import lozad from 'lozad'

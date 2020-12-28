@@ -1,7 +1,7 @@
 /**
  * @file Helmet service
  * @module service/helmet
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import {

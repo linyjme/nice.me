@@ -1,7 +1,7 @@
 /**
  * @file Eslint config
  * @module eslint/config
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
 */
 
 module.exports = {

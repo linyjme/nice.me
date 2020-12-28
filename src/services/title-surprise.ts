@@ -1,7 +1,7 @@
 /**
  * @file Title surprise
  * @module service/title-egg
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import FavicoClass from '/@/patches/favico'

@@ -1,7 +1,7 @@
 /**
  * @file UA parser
  * @module transformer/ua
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import parser from 'ua-parser-js'

@@ -1,7 +1,7 @@
 /**
  * @file App main logic
  * @module app/main
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import { CreateAppFunction } from 'vue'

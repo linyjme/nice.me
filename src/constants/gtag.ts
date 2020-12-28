@@ -1,7 +1,7 @@
 /**
  * @file GTag constant
  * @module constant/gtag
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 export enum GAEventActions {

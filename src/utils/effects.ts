@@ -1,7 +1,7 @@
 /**
  * @file Client util
  * @module util/effects
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import { nextTick } from 'vue'

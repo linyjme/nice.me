@@ -1,7 +1,7 @@
 /**
  * @file Time transformer
  * @module transformer/moment
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import { Language } from '/@/language/data'

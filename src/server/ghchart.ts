@@ -1,7 +1,7 @@
 /**
  * @file BFF ghchart updater
  * @module server/ghchart
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  * @repo https://github.com/sallar/github-contributions-chart
  */
 

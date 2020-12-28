@@ -1,7 +1,7 @@
 /**
  * @file Wallpaper state
  * @module store/wallpaper
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import { Module, MutationTree, ActionTree, GetterTree } from 'vuex'

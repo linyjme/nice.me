@@ -1,7 +1,7 @@
 /**
  * @file Site inner link transformer
  * @module transformer/relink
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import { ITagMap } from '/@/store/tag'

@@ -1,7 +1,7 @@
 /**
  * @file BFF GA updater
  * @module server/gtag
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import fs from 'fs'

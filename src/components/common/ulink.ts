@@ -1,7 +1,7 @@
 /**
  * @file Universal Link
  * @description Render Link with external/nofollow/noopener
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import { AnchorHTMLAttributes, defineComponent, h } from 'vue'

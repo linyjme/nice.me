@@ -1,7 +1,7 @@
 /**
  * @file App enhancers
  * @module app/enhancer
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import { computed } from 'vue'

@@ -1,7 +1,7 @@
 /**
  * @file Validater
  * @module transformer/validate
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 export const isValidDateParam = (date: string) => {

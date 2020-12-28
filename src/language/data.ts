@@ -1,7 +1,7 @@
 /**
  * @file I18n config
  * @module i18n/config
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import { I18nLanguage, I18nMap } from '/@/services/i18n'

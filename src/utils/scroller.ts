@@ -1,7 +1,7 @@
 /**
  * @file Scroll to anywhere
  * @module util/scroll-to
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import BezierEasing from 'bezier-easing'

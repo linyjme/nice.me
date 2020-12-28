@@ -1,7 +1,7 @@
 /**
  * @file placeholder
  * @description render placeholder or data
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import { defineComponent, h, Transition, PropType } from 'vue'

@@ -1,7 +1,7 @@
 /**
  * @file popup component
  * @module service/popup/popup-component
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
 */
 
 import { h, defineComponent, watch, Teleport, Fragment, PropType, ExtractPropTypes } from 'vue'

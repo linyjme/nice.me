@@ -1,7 +1,7 @@
 /**
  * @file 弹窗服务
  * @module service/popup
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  * @example window.$popup.vImage('http://xxx.jpg')
  */
 

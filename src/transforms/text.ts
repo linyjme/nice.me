@@ -1,7 +1,7 @@
 /**
  * @file Text transformer
  * @module transformer/text
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 // 文字溢出过滤器

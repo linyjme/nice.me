@@ -1,7 +1,7 @@
 /**
  * @file BFF Server helper
  * @module server/helper
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import path from 'path'

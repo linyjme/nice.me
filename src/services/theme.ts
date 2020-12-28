@@ -1,7 +1,7 @@
 /**
  * @file Theme service
  * @module service/theme
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import { App, inject, ref, readonly } from 'vue'

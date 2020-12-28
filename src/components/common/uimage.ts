@@ -1,7 +1,7 @@
 /**
  * @file Universal image
  * @description Render image with CDN/Proxy/Defer
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import { defineComponent, ref, h } from 'vue'

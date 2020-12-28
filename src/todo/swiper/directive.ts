@@ -1,7 +1,7 @@
 /**
  * @file vue-awesome-swiper
  * @module directive
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import { ref, Directive, DirectiveBinding, VNode } from 'vue'

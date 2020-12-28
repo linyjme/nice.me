@@ -1,7 +1,7 @@
 /**
  * @file responsive
  * @description Render on desktop platform or mobile platform
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 /* eslint-disable vue/one-component-per-file */

@@ -1,7 +1,7 @@
 /**
  * @file vue-awesome-swiper
  * @module SwiperSlideComponent
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import { defineComponent, computed, h, onMounted, onUpdated } from 'vue'

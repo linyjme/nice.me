@@ -1,7 +1,7 @@
 /**
  * @file GA 统计服务
  * @module service/gtag
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import { App, reactive, readonly, inject, Plugin } from 'vue'

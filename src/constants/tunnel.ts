@@ -1,7 +1,7 @@
 /**
  * @file Tunnel constant
  * @module constant/tunnel
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 export enum TunnelModule {

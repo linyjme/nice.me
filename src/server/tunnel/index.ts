@@ -1,7 +1,7 @@
 /**
  * @file BFF Server tunnel
  * @module server/tunnel
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import LRU from 'lru-cache'

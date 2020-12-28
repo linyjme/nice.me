@@ -1,7 +1,7 @@
 /**
  * @file 全局进度管理器
  * @module service/loading
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import { App, reactive, readonly, inject, nextTick } from 'vue'

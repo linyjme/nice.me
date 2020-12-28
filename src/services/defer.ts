@@ -1,7 +1,7 @@
 /**
  * @file 客户端初始化任务管理器
  * @module service/defer
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import { App, inject, reactive, Plugin } from 'vue'

@@ -1,7 +1,7 @@
 /**
  * @file App client entry
  * @module app/client
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import './polyfill'

@@ -1,7 +1,7 @@
 /**
  * @file Cache 缓存模块服务
  * @module service/cache
- * @author Surmon <https://github.com/surmon-china>
+ * @author Linyj <https://github.com/Linyj>
  */
 
 import * as storage from './storage'
