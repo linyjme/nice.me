@@ -31,24 +31,24 @@
           <i18n :lkey="LANGUAGE_KEYS.PAGE_MUSIC" />
         </span>
       </router-link>
-      <router-link class="item" :to="getPageRoute(RouteName.Lens)">
-        <i class="iconfont icon-lens"></i>
-        <span class="text">
-          <i18n :lkey="LANGUAGE_KEYS.PAGE_LENS" />
-        </span>
-      </router-link>
+<!--      <router-link class="item" :to="getPageRoute(RouteName.Lens)">-->
+<!--        <i class="iconfont icon-lens"></i>-->
+<!--        <span class="text">-->
+<!--          <i18n :lkey="LANGUAGE_KEYS.PAGE_LENS" />-->
+<!--        </span>-->
+<!--      </router-link>-->
       <router-link class="item" :to="getPageRoute(RouteName.About)">
         <i class="iconfont icon-user"></i>
         <span class="text">
           <i18n :lkey="LANGUAGE_KEYS.PAGE_ABOUT" />
         </span>
       </router-link>
-      <router-link class="item" :to="getPageRoute(RouteName.Job)">
-        <i class="iconfont icon-horse"></i>
-        <span class="text">
-          <i18n :lkey="LANGUAGE_KEYS.PAGE_JOB" />
-        </span>
-      </router-link>
+<!--      <router-link class="item" :to="getPageRoute(RouteName.Job)">-->
+<!--        <i class="iconfont icon-horse"></i>-->
+<!--        <span class="text">-->
+<!--          <i18n :lkey="LANGUAGE_KEYS.PAGE_JOB" />-->
+<!--        </span>-->
+<!--      </router-link>-->
       <router-link class="item" :to="getPageRoute(RouteName.Freelancer)">
         <i class="iconfont icon-tool"></i>
         <span class="text">
@@ -83,12 +83,12 @@
         </ulink>
       </template>
       <span class="separator"></span>
-      <router-link class="item app" :to="getPageRoute(RouteName.App)">
-        <i class="iconfont icon-app"></i>
-        <span class="text">
-          <i18n :lkey="LANGUAGE_KEYS.PAGE_APP" />
-        </span>
-      </router-link>
+<!--      <router-link class="item app" :to="getPageRoute(RouteName.App)">-->
+<!--        <i class="iconfont icon-app"></i>-->
+<!--        <span class="text">-->
+<!--          <i18n :lkey="LANGUAGE_KEYS.PAGE_APP" />-->
+<!--        </span>-->
+<!--      </router-link>-->
     </nav>
   </div>
 </template>

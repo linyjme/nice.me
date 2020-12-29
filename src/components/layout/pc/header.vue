@@ -2,9 +2,9 @@
   <header id="header" class="header">
     <div class="header-container container">
       <div class="header-header">
-        <uimage cdn src="/images/logo.svg" class="header-logo" />
+<!--        <uimage cdn src="/images/logo.svg" class="header-logo" />-->
         <span class="header-slogan">
-          <i18n :lkey="LANGUAGE_KEYS.APP_SLOGAN" />
+<!--          <i18n :lkey="LANGUAGE_KEYS.APP_SLOGAN" />-->
         </span>
         <router-link to="/" class="header-link" :title="t(LANGUAGE_KEYS.APP_SLOGAN)" />
       </div>

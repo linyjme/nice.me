@@ -6,8 +6,8 @@
           <i class="iconfont icon-swordsman" />
           <div class="text">
             <i18n>
-              <template #zh>一个渣男，一架飞机，两条狗</template>
-              <template #en>I'm Surmon, a digital nomad.</template>
+              <template #zh>个人网站，分享，人生，code，心得</template>
+              <template #en>a personal blog site, life, share, code,</template>
             </i18n>
           </div>
         </div>
@@ -25,7 +25,7 @@
             <i class="iconfont icon-tibet-1" />
             <span class="live-map" @click="toggleLiveMap">
               <i18n
-                zh="路为纸，地成册，行作笔，心当墨；思无界，行有疆"
+                zh="雨纷纷，旧故里，草木深，我听闻，你始终"
                 en="Every path I went astray built my Rome."
               />
             </span>
@@ -47,44 +47,44 @@
                   <i class="iconfont icon-github" />
                   <span class="text">GitHub</span>
                 </ulink>
-                <ulink class="item normal-button twitter" :href="VALUABLE_LINKS.TWITTER">
-                  <i class="iconfont icon-twitter" />
-                  <span class="text">Twitter</span>
-                </ulink>
-                <ulink class="item normal-button instagram" :href="VALUABLE_LINKS.INSTAGRAM">
-                  <i class="iconfont icon-instagram" />
-                  <span class="text">Instagram</span>
-                </ulink>
+<!--                <ulink class="item normal-button twitter" :href="VALUABLE_LINKS.TWITTER">-->
+<!--                  <i class="iconfont icon-twitter" />-->
+<!--                  <span class="text">Twitter</span>-->
+<!--                </ulink>-->
+<!--                <ulink class="item normal-button instagram" :href="VALUABLE_LINKS.INSTAGRAM">-->
+<!--                  <i class="iconfont icon-instagram" />-->
+<!--                  <span class="text">Instagram</span>-->
+<!--                </ulink>-->
               </span>
               <desktop-only>
                 <span class="mini">
                   <ulink class="item telegram" :href="VALUABLE_LINKS.TELEGRAM">
                     <i class="iconfont icon-telegram" />
                   </ulink>
-                  <ulink class="item linkedin" :href="VALUABLE_LINKS.LINKEDIN">
-                    <i class="iconfont icon-linkedin" />
-                  </ulink>
-                  <ulink class="item douban" :href="VALUABLE_LINKS.DOUBAN">
-                    <i class="iconfont icon-douban" />
-                  </ulink>
+<!--                  <ulink class="item linkedin" :href="VALUABLE_LINKS.LINKEDIN">-->
+<!--                    <i class="iconfont icon-linkedin" />-->
+<!--                  </ulink>-->
+<!--                  <ulink class="item douban" :href="VALUABLE_LINKS.DOUBAN">-->
+<!--                    <i class="iconfont icon-douban" />-->
+<!--                  </ulink>-->
                   <ulink class="item zhihu" :href="VALUABLE_LINKS.ZHIHU">
                     <i class="iconfont icon-zhihu" />
                   </ulink>
                   <ulink class="item weibo" :href="VALUABLE_LINKS.WEIBO">
                     <i class="iconfont icon-weibo" />
                   </ulink>
-                  <ulink class="item bilibili" :href="VALUABLE_LINKS.BILIBILI">
-                    <i class="iconfont icon-bilibili" />
-                  </ulink>
-                  <ulink class="item stackoverflow" :href="VALUABLE_LINKS.STACK_OVERFLOW" v-if="false">
-                    <i class="iconfont icon-stackoverflow" />
-                  </ulink>
+<!--                  <ulink class="item bilibili" :href="VALUABLE_LINKS.BILIBILI">-->
+<!--                    <i class="iconfont icon-bilibili" />-->
+<!--                  </ulink>-->
+<!--                  <ulink class="item stackoverflow" :href="VALUABLE_LINKS.STACK_OVERFLOW" v-if="false">-->
+<!--                    <i class="iconfont icon-stackoverflow" />-->
+<!--                  </ulink>-->
                   <ulink class="item algorithm" :href="VALUABLE_LINKS.LEETCODE_CN" v-if="false">
                     <i class="iconfont icon-leetcode" />
                   </ulink>
-                  <ulink class="item quora" :href="VALUABLE_LINKS.QUORA">
-                    <i class="iconfont icon-quora" />
-                  </ulink>
+<!--                  <ulink class="item quora" :href="VALUABLE_LINKS.QUORA">-->
+<!--                    <i class="iconfont icon-quora" />-->
+<!--                  </ulink>-->
                 </span>
               </desktop-only>
             </span>
@@ -92,22 +92,22 @@
           <div class="item">
             <i class="iconfont icon-dollar"></i>
             <div class="sponsor">
-              <ulink
-                class="github normal-button icon-button"
-                :href="VALUABLE_LINKS.GITHUB_SPONSORS"
-                @mousedown="handleTouchSponsor"
-              >
-                <i class="iconfont icon-heart" />
-                <span class="text">GitHub Sponsors</span>
-              </ulink>
-              <ulink
-                class="paypal normal-button icon-button"
-                :href="VALUABLE_LINKS.PAYPAL"
-                @mousedown="handleTouchSponsor"
-              >
-                <i class="iconfont icon-paypal" />
-                <span class="text">PayPal me</span>
-              </ulink>
+<!--              <ulink-->
+<!--                class="github normal-button icon-button"-->
+<!--                :href="VALUABLE_LINKS.GITHUB_SPONSORS"-->
+<!--                @mousedown="handleTouchSponsor"-->
+<!--              >-->
+<!--                <i class="iconfont icon-heart" />-->
+<!--                <span class="text">GitHub Sponsors</span>-->
+<!--              </ulink>-->
+<!--              <ulink-->
+<!--                class="paypal normal-button icon-button"-->
+<!--                :href="VALUABLE_LINKS.PAYPAL"-->
+<!--                @mousedown="handleTouchSponsor"-->
+<!--              >-->
+<!--                <i class="iconfont icon-paypal" />-->
+<!--                <span class="text">PayPal me</span>-->
+<!--              </ulink>-->
               <ulink
                 class="more normal-button icon-button"
                 :href="VALUABLE_LINKS.SPONSOR"
@@ -135,11 +135,11 @@
           <div class="item">
             <i class="iconfont icon-comment-discussion" />
             <ulink class="group-link" :href="VALUABLE_LINKS.QQ_GROUP">
-              <i18n zh="寂寞同性交友群" en="QQ group" />
+              <i18n zh="交友群" en="QQ group" />
             </ulink>
             <span class="separator">|</span>
             <ulink class="group-link" :href="VALUABLE_LINKS.TELEGRAM_GROUP">
-              <i18n zh="电报群" en="Telegram group" />
+              <i18n zh="划水群" en="Telegram group" />
             </ulink>
           </div>
           <div class="item">
@@ -196,10 +196,10 @@
         <img :src="gravatar" class="avatar" draggable="false">
         <div class="description">
           <h3 class="name">
-            <strong>Surmon</strong>
+            <strong>Linyj</strong>
           </h3>
           <p class="role">
-            <i18n en="Digital nomad" zh="数字游民" />
+            <i18n en="Digital nomad" zh="佛系游民" />
           </p>
         </div>
         <desktop-only>

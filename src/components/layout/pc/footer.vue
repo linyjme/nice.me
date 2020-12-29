@@ -25,14 +25,14 @@
         Vue
       </ulink>
       <i18n
-        zh=" 和 日月星辰 强力驱动"
+        zh=" 和 Angular"
         en=" and solitarily"
       />
       <span class="separator">|</span>
       <i18n>
         <template #zh>
-          <router-link :to="aboutPageUrl" key="zh">吾之臂躯</router-link>
-          <span> 行针步线</span>
+          <router-link :to="aboutPageUrl" key="zh">关于我</router-link>
+          <span> ...</span>
         </template>
         <template #en>
           <span>Designed By </span>

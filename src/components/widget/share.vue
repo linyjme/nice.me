@@ -94,10 +94,10 @@
           class: 'weibo',
           url: () => `https://service.weibo.com/share/share.php?url=${getUrl()}&title=${getTitle()}&source=${getUrl()}&sourceUrl=${getUrl()}&content=${getDescription()}`
         },
-        {
-          name: 'twitter',
-          url: () => `https://twitter.com/share?text=${getTitle()}&url=${getUrl()}`
-        },
+        // {
+        //   name: 'twitter',
+        //   url: () => `https://twitter.com/share?text=${getTitle()}&url=${getUrl()}`
+        // },
         {
           name: 'QQ空间',
           class: 'qzone',
@@ -108,24 +108,24 @@
           class: 'douban',
           url: () => `https://www.douban.com/recommend/?url=${getUrl()}&title=${getTitle()}`
         },
-        {
-          name: '人人',
-          class: 'renren',
-          url: () => `https://widget.renren.com/dialog/share?resourceUrl=${getUrl()}&srcUrl=${getUrl()}&title=${getTitle()}&description=${getDescription()}`
-        },
-        {
-          name: '印象笔记',
-          class: 'evernote',
-          url: () => `https://www.evernote.com/clip.action?url=${getUrl()}&title=${getTitle()}`
-        },
-        {
-          name: 'facebook',
-          url: () => `https://www.facebook.com/sharer/sharer.php?u=${getUrl()}`
-        },
-        {
-          name: 'linkedin',
-          url: () => `https://www.linkedin.com/shareArticle?title=${getTitle()}&summary=${getDescription()}&mini=true&url=${getUrl()}`
-        }
+        // {
+        //   name: '人人',
+        //   class: 'renren',
+        //   url: () => `https://widget.renren.com/dialog/share?resourceUrl=${getUrl()}&srcUrl=${getUrl()}&title=${getTitle()}&description=${getDescription()}`
+        // },
+        // {
+        //   name: '印象笔记',
+        //   class: 'evernote',
+        //   url: () => `https://www.evernote.com/clip.action?url=${getUrl()}&title=${getTitle()}`
+        // },
+        // {
+        //   name: 'facebook',
+        //   url: () => `https://www.facebook.com/sharer/sharer.php?u=${getUrl()}`
+        // },
+        // {
+        //   name: 'linkedin',
+        //   url: () => `https://www.linkedin.com/shareArticle?title=${getTitle()}&summary=${getDescription()}&mini=true&url=${getUrl()}`
+        // }
       ]
 
       return {

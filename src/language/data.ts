@@ -27,19 +27,19 @@ export const languages: I18nLanguage[] = [
 
 export const langMap: I18nMap<LANGUAGE_KEYS, Language> = {
   [LANGUAGE_KEYS.PAGE_HOME]: {
-    [Language.Zh]: '明殿',
+    [Language.Zh]: '首页',
     [Language.En]: 'home'
   },
   [LANGUAGE_KEYS.CATEGORY_INSIGHT]: {
-    [Language.Zh]: '无色庵',
+    [Language.Zh]: '人生',
     [Language.En]: 'insight'
   },
   [LANGUAGE_KEYS.CATEGORY_CODE]: {
-    [Language.Zh]: '宁静寺',
+    [Language.Zh]: '代码',
     [Language.En]: 'code'
   },
   [LANGUAGE_KEYS.PAGE_GITHUB]: {
-    [Language.Zh]: '丹青阁',
+    [Language.Zh]: '仓库',
     [Language.En]: 'github'
   },
   [LANGUAGE_KEYS.PAGE_LENS]: {
@@ -51,7 +51,7 @@ export const langMap: I18nMap<LANGUAGE_KEYS, Language> = {
     [Language.En]: 'instagram'
   },
   [LANGUAGE_KEYS.PAGE_MUSIC]: {
-    [Language.Zh]: '梨园',
+    [Language.Zh]: '音乐',
     [Language.En]: 'music'
   },
   [LANGUAGE_KEYS.PAGE_JOB]: {
@@ -59,15 +59,15 @@ export const langMap: I18nMap<LANGUAGE_KEYS, Language> = {
     [Language.En]: 'job'
   },
   [LANGUAGE_KEYS.PAGE_ABOUT]: {
-    [Language.Zh]: '狂浪生',
+    [Language.Zh]: '关于',
     [Language.En]: 'about'
   },
   [LANGUAGE_KEYS.PAGE_FREELANCER]: {
-    [Language.Zh]: '得道',
+    [Language.Zh]: '门路',
     [Language.En]: 'freelancer'
   },
   [LANGUAGE_KEYS.PAGE_GUESTBOOK]: {
-    [Language.Zh]: '四方馆',
+    [Language.Zh]: '咸鱼',
     [Language.En]: 'guestbook'
   },
   [LANGUAGE_KEYS.PAGE_APP]: {
@@ -79,7 +79,7 @@ export const langMap: I18nMap<LANGUAGE_KEYS, Language> = {
     [Language.En]: 'archive'
   },
   [LANGUAGE_KEYS.SITE_MAP_XML]: {
-    [Language.Zh]: '旷日积晷',
+    [Language.Zh]: '关于网站',
     [Language.En]: 'sitemap.xml'
   },
   [LANGUAGE_KEYS.EMPTY_PLACEHOLDER]: {
