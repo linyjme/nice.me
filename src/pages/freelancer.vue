@@ -111,71 +111,71 @@
         </div>
       </client-only>
     </desktop-only>
-    <div class="step">
-      <div class="step-content container">
-        <ul class="step-list">
-          <li class="item">
-            <h3 class="name">
-              <i18n zh="1. 提交需求" en="1. Consult" />
-            </h3>
-            <p class="desc">
-              <i18n en="Product requirements document" zh="提供构思成熟的需求文档" />
-            </p>
-            <p class="desc">
-              <i18n en="Prototype design document" zh="清晰可用的设计图或原型" />
-            </p>
-          </li>
-          <li class="item">
-            <h3 class="name">
-              <i18n en="2. Confirm" zh="2. 确认需求" />
-            </h3>
-            <p class="desc">
-              <i18n en="Price and schedule" zh="确认报价及开发周期" />
-            </p>
-            <p class="desc">
-              <i18n en="Development cycle" zh="协商开发周期和要点" />
-            </p>
-          </li>
-          <li class="item">
-            <h3 class="name">
-              <i18n en="3. Develop" zh="3. 预付开发" />
-            </h3>
-            <p class="desc">
-              <i18n en="Payment the trust and deposit" zh="预付部分或全部" />
-            </p>
-            <p class="desc">
-              <i18n en="Develop project" zh="进入开发流程" />
-            </p>
-          </li>
-          <li class="item">
-            <h3 class="name">
-              <i18n en="4. Review" zh="4. 预收修正" />
-            </h3>
-            <p class="desc">
-              <i18n en="Review and experience" zh="提供预览演示" />
-            </p>
-            <p class="desc">
-              <i18n en="Fixbug and optimize" zh="细节修正调优" />
-            </p>
-          </li>
-          <li class="item">
-            <h3 class="name">
-              <i18n en="5. Delivery" zh="5. 交付维护" />
-            </h3>
-            <p class="desc">
-              <i18n en="Pay balance" zh="付清尾款，交付项目" />
-            </p>
-            <p class="desc">
-              <i18n en="Maintenance cycle" zh="一定周期内持续维护" />
-            </p>
-          </li>
-        </ul>
-      </div>
-    </div>
+<!--    <div class="step">-->
+<!--      <div class="step-content container">-->
+<!--        <ul class="step-list">-->
+<!--          <li class="item">-->
+<!--            <h3 class="name">-->
+<!--              <i18n zh="1. 提交需求" en="1. Consult" />-->
+<!--            </h3>-->
+<!--            <p class="desc">-->
+<!--              <i18n en="Product requirements document" zh="提供构思成熟的需求文档" />-->
+<!--            </p>-->
+<!--            <p class="desc">-->
+<!--              <i18n en="Prototype design document" zh="清晰可用的设计图或原型" />-->
+<!--            </p>-->
+<!--          </li>-->
+<!--          <li class="item">-->
+<!--            <h3 class="name">-->
+<!--              <i18n en="2. Confirm" zh="2. 确认需求" />-->
+<!--            </h3>-->
+<!--            <p class="desc">-->
+<!--              <i18n en="Price and schedule" zh="确认报价及开发周期" />-->
+<!--            </p>-->
+<!--            <p class="desc">-->
+<!--              <i18n en="Development cycle" zh="协商开发周期和要点" />-->
+<!--            </p>-->
+<!--          </li>-->
+<!--          <li class="item">-->
+<!--            <h3 class="name">-->
+<!--              <i18n en="3. Develop" zh="3. 预付开发" />-->
+<!--            </h3>-->
+<!--            <p class="desc">-->
+<!--              <i18n en="Payment the trust and deposit" zh="预付部分或全部" />-->
+<!--            </p>-->
+<!--            <p class="desc">-->
+<!--              <i18n en="Develop project" zh="进入开发流程" />-->
+<!--            </p>-->
+<!--          </li>-->
+<!--          <li class="item">-->
+<!--            <h3 class="name">-->
+<!--              <i18n en="4. Review" zh="4. 预收修正" />-->
+<!--            </h3>-->
+<!--            <p class="desc">-->
+<!--              <i18n en="Review and experience" zh="提供预览演示" />-->
+<!--            </p>-->
+<!--            <p class="desc">-->
+<!--              <i18n en="Fixbug and optimize" zh="细节修正调优" />-->
+<!--            </p>-->
+<!--          </li>-->
+<!--          <li class="item">-->
+<!--            <h3 class="name">-->
+<!--              <i18n en="5. Delivery" zh="5. 交付维护" />-->
+<!--            </h3>-->
+<!--            <p class="desc">-->
+<!--              <i18n en="Pay balance" zh="付清尾款，交付项目" />-->
+<!--            </p>-->
+<!--            <p class="desc">-->
+<!--              <i18n en="Maintenance cycle" zh="一定周期内持续维护" />-->
+<!--            </p>-->
+<!--          </li>-->
+<!--        </ul>-->
+<!--      </div>-->
+<!--    </div>-->
     <div class="rule">
       <div class="rule-content container">
         <i18n
-          zh="如果你认为自己的能力足以支撑一位出色、省心、优秀、帅气、完美的的全栈工程师的生产力，请 EMail 我；非常优秀，没有之一"
+          zh="如果你认为自己的能力足以支撑一位出色、省心、优秀、帅气、完美的的全栈工程师的生产力，请 EMail 我；"
           en="Any application that can be written in JavaScript, will eventually be written in JavaScript."
         />
       </div>

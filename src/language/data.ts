@@ -63,8 +63,8 @@ export const langMap: I18nMap<LANGUAGE_KEYS, Language> = {
     [Language.En]: 'about'
   },
   [LANGUAGE_KEYS.PAGE_FREELANCER]: {
-    [Language.Zh]: '门路',
-    [Language.En]: 'freelancer'
+    [Language.Zh]: '服务',
+    [Language.En]: 'server'
   },
   [LANGUAGE_KEYS.PAGE_GUESTBOOK]: {
     [Language.Zh]: '咸鱼',
@@ -107,11 +107,11 @@ export const langMap: I18nMap<LANGUAGE_KEYS, Language> = {
     [Language.En]: 'Gallery'
   },
   [LANGUAGE_KEYS.PAGE_FREELANCER_SLOGAN]: {
-    [Language.Zh]: '为我一挥手，如临万壑松',
+    [Language.Zh]: '我自是年少，韶华倾负',
     [Language.En]: 'Talk is cheap. Show me the code'
   },
   [LANGUAGE_KEYS.PAGE_FREELANCER_EMAIL_ME]: {
-    [Language.Zh]: '即破楼兰',
+    [Language.Zh]: 'email 联系me',
     [Language.En]: 'Email ME'
   },
   [LANGUAGE_KEYS.PAGE_FREELANCER_HIRE_ME]: {

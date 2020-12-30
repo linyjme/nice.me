@@ -16,7 +16,7 @@
             <i class="iconfont icon-heart" />
             <span class="like-text">
               <i18n
-                zh="酒池肉林、日夜笙歌、依翠偎红、五音六律、目营心匠、桀骜不羁"
+                zh="红尘初妆，山河无疆。 最初的面庞，碾碎梦魇无常，命格无双。"
                 en="code. beauty. whisky. music. vagrant."
               />
             </span>
