@@ -8,7 +8,7 @@
     <p class="link" @click="handleResolveRoute">
       <slot name="resolve-text" />
     </p>
-    <uimage cdn class="logo" src="/images/logo.svg" />
+<!--    <uimage cdn class="logo" src="/images/logo.svg" />-->
   </div>
 </template>
 

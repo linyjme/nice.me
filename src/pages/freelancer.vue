@@ -51,15 +51,15 @@
             <p class="icon nodejs">
               <i class="iconfont icon-nodejs"></i>
             </p>
-            <h3 class="name">Node.js</h3>
+            <h3 class="name">Technology</h3>
             <p class="desc">
-              <i18n en="Node.js application" zh="Node.js 整站建设" />
+              <i18n en="Node.js Web" zh="Node.js 服务开发" />
             </p>
             <p class="desc">
-              <i18n en="Node.js Web 服务开发" zh="Node.js online bussniess" />
+              <i18n en="Python Web" zh="Python 服务开发" />
             </p>
             <p class="desc">
-              <i18n en="Node.js 命令行工具开发" zh="Node.js CLI application" />
+              <i18n en="Java Web" zh="Java 服务开发" />
             </p>
           </li>
           <li class="item">
@@ -67,16 +67,16 @@
               <i class="iconfont icon-app"></i>
             </p>
             <h3 class="name">
-              <i18n en="Hybrid App" zh="混合应用" />
+              <i18n en="AI and BigData" zh="人工智能" />
             </h3>
             <p class="desc">
-              <i18n en="Flutter application" zh="Flutter 应用开发" />
+              <i18n en="Machine learning" zh="机器学习" />
             </p>
             <p class="desc">
-              <i18n en="React Native application" zh="React Native 应用开发" />
+              <i18n en="Deep learning" zh="深度学习" />
             </p>
             <p class="desc">
-              <i18n en="Electron application" zh="Electron 应用开发" />
+              <i18n en="BigData" zh="大数据" />
             </p>
           </li>
           <li class="item">
@@ -94,10 +94,10 @@
             <p class="icon consult">
               <i class="iconfont icon-tool"></i>
             </p>
-            <h3 class="name"><i18n en="Consultant" zh="技术咨询" /></h3>
-            <p class="desc"><i18n en="Everything about web" zh="语言、框架疑难杂症" /></p>
-            <p class="desc"><i18n en="Business and technical" zh="业务与技术方案设计" /></p>
-            <p class="desc"><i18n en="Technical consultant" zh="长期技术顾问指导" /></p>
+            <h3 class="name"><i18n en="Backend framework" zh="后端框架" /></h3>
+            <p class="desc"><i18n en="Spring" zh="Spring Boot" /></p>
+            <p class="desc"><i18n en="Django" zh="Django Rest" /></p>
+            <p class="desc"><i18n en="Flask" zh="Flask" /></p>
           </li>
         </ul>
       </div>
@@ -175,7 +175,7 @@
     <div class="rule">
       <div class="rule-content container">
         <i18n
-          zh="如果你认为自己的能力足以支撑一位出色、省心、优秀、帅气、完美的的全栈工程师的生产力，请 EMail 我；"
+          zh="全栈工程师的生产力，请 EMail 我；"
           en="Any application that can be written in JavaScript, will eventually be written in JavaScript."
         />
       </div>

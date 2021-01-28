@@ -23,7 +23,7 @@ export const META = Object.freeze({
 
 export const FRIEND_LINKS = Object.freeze({
   // SkyRover: '//skyrover.me',
-  JimmyLv: '//linyjme.github.io',
+  Linyj: '//linyjme.github.io',
   // Jooger: '//jooger.me'
 })
 

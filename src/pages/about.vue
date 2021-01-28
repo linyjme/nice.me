@@ -16,7 +16,7 @@
             <i class="iconfont icon-heart" />
             <span class="like-text">
               <i18n
-                zh="凡心所向，素履所往，生如逆旅，一苇以航。"
+                zh="凡心所向，素履所往，生如逆旅，一苇以航"
                 en="code. beauty. whisky. music. vagrant."
               />
             </span>

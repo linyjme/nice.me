@@ -115,8 +115,8 @@ export const langMap: I18nMap<LANGUAGE_KEYS, Language> = {
     [Language.En]: 'Email ME'
   },
   [LANGUAGE_KEYS.PAGE_FREELANCER_HIRE_ME]: {
-    [Language.Zh]: '或在 Upwork 雇佣我',
-    [Language.En]: 'Hire me on upwork.com',
+    [Language.Zh]: '或 Call 我',
+    [Language.En]: 'Call me on upwork.com',
   },
   [LANGUAGE_KEYS.DEVICE_ANDROID]: {
     [Language.Zh]: 'Android',
