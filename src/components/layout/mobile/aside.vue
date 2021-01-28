@@ -33,18 +33,18 @@
           <i class="iconfont icon-peachblossom"></i>
           <i18n :lkey="LANGUAGE_KEYS.PAGE_ARCHIVE" />
         </router-link>
-        <router-link class="item" :to="getPageRoute(RouteName.Lens)">
-          <i class="iconfont icon-lens"></i>
-          <i18n :lkey="LANGUAGE_KEYS.PAGE_LENS" />
-        </router-link>
+<!--        <router-link class="item" :to="getPageRoute(RouteName.Lens)">-->
+<!--          <i class="iconfont icon-lens"></i>-->
+<!--          <i18n :lkey="LANGUAGE_KEYS.PAGE_LENS" />-->
+<!--        </router-link>-->
         <router-link class="item" :to="getPageRoute(RouteName.About)">
           <i class="iconfont icon-user"></i>
           <i18n :lkey="LANGUAGE_KEYS.PAGE_ABOUT" />
         </router-link>
-        <router-link class="item" :to="getPageRoute(RouteName.Job)">
-          <i class="iconfont icon-horse"></i>
-          <i18n :lkey="LANGUAGE_KEYS.PAGE_JOB" />
-        </router-link>
+<!--        <router-link class="item" :to="getPageRoute(RouteName.Job)">-->
+<!--          <i class="iconfont icon-horse"></i>-->
+<!--          <i18n :lkey="LANGUAGE_KEYS.PAGE_JOB" />-->
+<!--        </router-link>-->
         <router-link class="item" :to="getPageRoute(RouteName.Freelancer)">
           <i class="iconfont icon-tool"></i>
           <i18n :lkey="LANGUAGE_KEYS.PAGE_FREELANCER" />
@@ -53,10 +53,10 @@
           <i class="iconfont icon-comment"></i>
           <i18n :lkey="LANGUAGE_KEYS.PAGE_GUESTBOOK" />
         </router-link>
-        <router-link class="item app" :to="getPageRoute(RouteName.App)">
-          <i class="iconfont icon-app"></i>
-          <i18n :lkey="LANGUAGE_KEYS.PAGE_APP" />
-        </router-link>
+<!--        <router-link class="item app" :to="getPageRoute(RouteName.App)">-->
+<!--          <i class="iconfont icon-app"></i>-->
+<!--          <i18n :lkey="LANGUAGE_KEYS.PAGE_APP" />-->
+<!--        </router-link>-->
       </nav>
     </div>
   </aside>

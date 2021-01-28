@@ -179,7 +179,7 @@ export const langMap: I18nMap<LANGUAGE_KEYS, Language> = {
     [Language.En]: 'off'
   },
   [LANGUAGE_KEYS.APP_SLOGAN]: {
-    [Language.Zh]: '来苏之望，鞭狂马猖',
+    [Language.Zh]: '人生海海，山山而川',
     [Language.En]: 'Because the mountain was there'
   },
   [LANGUAGE_KEYS.MUSIC_PLACEHOLDER]: {
@@ -239,7 +239,7 @@ export const langMap: I18nMap<LANGUAGE_KEYS, Language> = {
     [Language.En]: 'rendering...'
   },
   [LANGUAGE_KEYS.HOT_ARTICLE_LIST_TITLE]: {
-    [Language.Zh]: '群贤毕至',
+    [Language.Zh]: '抛砖引玉',
     [Language.En]: 'hot'
   },
   [LANGUAGE_KEYS.ARTICLE_LIST_LOADMORE]: {

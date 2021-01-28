@@ -41,10 +41,10 @@
         <i class="iconfont icon-menu"></i>
       </a>
       <router-link to="/" class="navbar-logo">
-        <uimage cdn src="/images/logo.svg" />
+<!--        <uimage cdn src="/images/logo.svg" />-->
       </router-link>
       <a href class="navbar-search" @click.stop.prevent="openSearch">
-        <i class="iconfont icon-search"></i>
+<!--        <i class="iconfont icon-search"></i>-->
       </a>
     </nav>
   </header>

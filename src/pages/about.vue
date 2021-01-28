@@ -16,7 +16,7 @@
             <i class="iconfont icon-heart" />
             <span class="like-text">
               <i18n
-                zh="红尘初妆，山河无疆。 最初的面庞，碾碎梦魇无常，命格无双。"
+                zh="凡心所向，素履所往，生如逆旅，一苇以航。"
                 en="code. beauty. whisky. music. vagrant."
               />
             </span>
@@ -122,7 +122,7 @@
             <i class="iconfont icon-music" />
             <span class="music">
               <router-link :to="getPageRoute(RouteName.Music)">
-                Jazz-HipHop, Electronic, Disco, Rock, Popular
+                Popular, Jazz-HipHop, Rock, Disco
               </router-link>
               <ulink class="spotify" :href="VALUABLE_LINKS.SPOTIFY">
                 <i class="iconfont icon-spotify" />

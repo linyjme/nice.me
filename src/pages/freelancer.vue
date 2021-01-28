@@ -208,11 +208,11 @@
 
       const handleSubmitEmail = () => {
         const subject = isZhLang.value
-          ? `嗨！Surmon，久仰大名！`
+          ? `嗨！Linyj，久仰大名！`
           : `Technical consultant / ${META.title}`
         const body = isZhLang.value
           ? `我有一个需求：%0D%0A %0D%0A - 需求简述： %0D%0A %0D%0A - 需求文档：%0D%0A %0D%0A - 预算金额：%0D%0A %0D%0A - 预算周期：`
-          : 'Hi Surmon, My name is '
+          : 'Hi Linyj, My name is '
         const mailAddress = `mailto:${META.email}` + (
           isMobile.value
             ? ''

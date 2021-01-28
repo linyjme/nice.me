@@ -264,7 +264,7 @@ All notable changes to this project will be documented in this file.
 
 ### v1.1.0
 - app下载按钮的位置,下载按钮背景颜色改为模块背景色半透明，文件不能放在服务器，太慢了，和移动端下载页需要适配
-- http://music.163.com/#/playlist?id=638949385
+- http://music.163.com/#/playlist?id=449990420
 - 修复了播放器
 - 升级了 Nuxt，且使用了 offline-plugin 实现离线应用
 - 增加弹幕功能
