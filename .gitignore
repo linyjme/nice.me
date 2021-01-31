@@ -97,7 +97,7 @@ sw.*
 # analytics
 public/sitemap.xml
 public/rss.xml
-public/scripts/gtag.js
+# public/scripts/gtag.js
 
 # barrages
 data/barrages.json
