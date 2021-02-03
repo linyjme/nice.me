@@ -40,7 +40,8 @@ export const getCommentElementId = (commentId: string | number): string => {
 
 export const humanizeGravatarUrlByEmail = (email: string) => {
   return emailRegex.test(email)
-    ? getGravatarByEmail(email)
+    // ? getGravatarByEmail(email) # TODO 评论图片bug
+    ? getFileCDNUrl('/images/comment/anonymous.jpg')
     : getFileCDNUrl('/images/comment/anonymous.jpg')
 }
 
