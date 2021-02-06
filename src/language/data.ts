@@ -75,7 +75,7 @@ export const langMap: I18nMap<LANGUAGE_KEYS, Language> = {
     [Language.En]: 'app'
   },
   [LANGUAGE_KEYS.PAGE_ARCHIVE]: {
-    [Language.Zh]: '黄卷青灯',
+    [Language.Zh]: '阅读',
     [Language.En]: 'archive'
   },
   [LANGUAGE_KEYS.SITE_MAP_XML]: {

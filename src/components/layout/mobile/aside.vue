@@ -29,10 +29,10 @@
           <i class="iconfont icon-github"></i>
           <i18n :lkey="LANGUAGE_KEYS.PAGE_GITHUB" />
         </ulink>
-        <router-link class="item" :to="getPageRoute(RouteName.Archive)">
-          <i class="iconfont icon-peachblossom"></i>
-          <i18n :lkey="LANGUAGE_KEYS.PAGE_ARCHIVE" />
-        </router-link>
+<!--        <router-link class="item" :to="getPageRoute(RouteName.Archive)">-->
+<!--          <i class="iconfont icon-peachblossom"></i>-->
+<!--          <i18n :lkey="LANGUAGE_KEYS.PAGE_ARCHIVE" />-->
+<!--        </router-link>-->
 <!--        <router-link class="item" :to="getPageRoute(RouteName.Lens)">-->
 <!--          <i class="iconfont icon-lens"></i>-->
 <!--          <i18n :lkey="LANGUAGE_KEYS.PAGE_LENS" />-->
