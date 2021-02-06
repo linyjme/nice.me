@@ -2,10 +2,10 @@
   <aside class="aside" :class="{ open: open }">
     <div class="aside-user">
       <div class="avatar">
-        <uimage :src="gravatar" alt="Surmon" />
+        <uimage :src="gravatar" alt="Linyj" />
       </div>
       <div class="profile">
-        <h3 class="name">Surmon</h3>
+        <h3 class="name">Linyj</h3>
         <p class="slogan">
           <i18n :lkey="LANGUAGE_KEYS.APP_SLOGAN" />
         </p>
