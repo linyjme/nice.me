@@ -32,7 +32,7 @@
       <i18n>
         <template #zh>
           <router-link :to="aboutPageUrl" key="zh">关于我</router-link>
-          <span> ...</span>
+          <span> | 粤ICP备2021017077号</span>
         </template>
         <template #en>
           <span>Designed By </span>

@@ -83,7 +83,7 @@ export const resetTitle = () => {
 // Simple
 export const setEasyTitleEffect = () => {
   reallyTitle = document.title
-  document.title = 'Uncensored - Pornhub.com'
+  document.title = 'Nice.me - Linyj.cn'
   favicon = new Favico({ type: 'rectangle', animation: 'popFade' })
   favicon.badge('PH')
 }
