@@ -277,17 +277,17 @@
         }
 
         // block list
-        const { mails, keywords } = blockList.value
-        const hitMail = mails.includes(profile.email)
-        const hitKeyword = (
-          keywords.length &&
-          eval(`/${keywords.join('|')}/ig`).test(penState.content)
-        )
-        if (hitMail || hitKeyword) {
-          alert(i18n.t(LANGUAGE_KEYS.COMMENT_POST_ERROR_SUBMIT))
-          console.warn('评论发布失败\n1：被 Akismet 过滤\n2：邮箱/IP 被列入黑名单\n3：内容包含黑名单关键词')
-          return false
-        }
+        // const { mails, keywords } = blockList.value
+        // const hitMail = mails.includes(profile.email)
+        // const hitKeyword = (
+        //   keywords.length &&
+        //   eval(`/${keywords.join('|')}/ig`).test(penState.content)
+        // )
+        // if (hitMail || hitKeyword) {
+        //   alert(i18n.t(LANGUAGE_KEYS.COMMENT_POST_ERROR_SUBMIT))
+        //   console.warn('评论发布失败\n1：被 Akismet 过滤\n2：邮箱/IP 被列入黑名单\n3：内容包含黑名单关键词')
+        //   return false
+        // }
 
         // post
         return store.dispatch(getNamespace(Modules.Comment, CommentModuleActions.PostComment), {
