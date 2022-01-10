@@ -1,7 +1,7 @@
 /**
  * @file State constant
- * @module constant/state
- * @author Linyj <https://github.com/Linyj>
+ * @module constant.state
+ * @author Surmon <https://github.com/surmon-china>
  */
 
 // 转载状态
@@ -26,4 +26,9 @@ export enum SortType {
   Asc = 1, // 升序
   Desc = -1, // 降序
   Hot = 2 // 热序
+}
+
+export interface UniversalExtend {
+  name: string
+  value: string
 }

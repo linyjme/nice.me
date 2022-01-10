@@ -1,73 +1,51 @@
 <template>
-  <div class="share-module">
-    <placeholder :loading="fetching">
-      <template #loading>
-        <div class="skeleton">
-          <skeleton-base
-            v-for="item in skeletonCount"
-            :key="item"
-            :radius="0"
-            :style="{
-              width: `calc((100% - (1em * ${skeletonCount - 1})) / ${skeletonCount})`
-            }"
-          />
-        </div>
-      </template>
-      <template #default>
-        <base-share
-          class="article-share"
-          :class="{ mobile: isMobile }"
-        />
-      </template>
-    </placeholder>
+  <div class="share-box">
+    <base-share class="share" :socials="socials" />
   </div>
 </template>
 
 <script lang="ts">
-  import { defineComponent, computed } from 'vue'
-  import { useEnhancer } from '/@/enhancer'
-  import BaseShare from '/@/components/widget/share.vue'
+  import { defineComponent, PropType } from 'vue'
+  import { VALUABLE_LINKS } from '/@/config/app.config'
+  import BaseShare, { SocialMedia } from '/@/components/widget/share.vue'
 
   export default defineComponent({
-    name: 'ArticleShare',
-    props: {
-      fetching: {
-        type: Boolean,
-        required: true
-      }
-    },
+    name: 'ArticleLikeShare',
     components: {
       BaseShare
     },
-    setup() {
-      const { isMobile } = useEnhancer()
-      const skeletonCount = isMobile.value ? 3 : 10
+    props: {
+      socials: {
+        type: Array as PropType<SocialMedia[]>,
+        default: () => []
+      }
+    },
+    setup(props) {
+      const skeletonCount = props.socials.length
+        ? props.socials.length
+        : Object.keys(SocialMedia).length
+
       return {
-        isMobile,
-        skeletonCount
+        skeletonCount,
+        VALUABLE_LINKS
       }
     }
   })
 </script>
 
 <style lang="scss" scoped>
-  @import 'src/assets/styles/init.scss';
+  @import 'src/styles/init.scss';
 
-  .share-module {
+  $share-size: 3rem;
+
+  .share-box {
     padding: $gap;
 
-    > .skeleton {
-      display: flex;
-      justify-content: space-between;
-      height: 3rem;
-    }
-
-    > .article-share {
+    .share {
       width: 100%;
-      opacity: .6;
+      opacity: 0.8;
       display: flex;
       justify-content: space-between;
-
       &:hover {
         opacity: 1;
       }
@@ -75,8 +53,8 @@
       ::v-deep(.share-ejector) {
         flex-grow: 1;
         width: auto;
-        height: 3rem;
-        line-height: 3rem;
+        height: $share-size;
+        line-height: $share-size;
         margin-right: $gap;
         font-size: $font-size-h4;
         border-radius: $xs-radius;
@@ -84,24 +62,6 @@
 
         &:last-child {
           margin-right: 0;
-        }
-      }
-
-      &.mobile {
-        ::v-deep(.share-ejector) {
-          width: auto;
-          display: none;
-          flex-grow: 0;
-
-          &[class*='wechat'],
-          &[class*='weibo'],
-          &[class*='twitter'] {
-            display: inline-block;
-            flex-grow: 1;
-          }
-          &[class*='twitter'] {
-            margin-right: 0;
-          }
         }
       }
     }

@@ -1,8 +1,8 @@
 /**
- * @file 弹窗服务
- * @module service/popup
- * @author Linyj <https://github.com/Linyj>
- * @example window.$popup.vImage('http://xxx.jpg')
+ * @file Client popup
+ * @module service.popup
+ * @author Surmon <https://github.com/surmon-china>
+ * @example window.$popup.vImage('https://xxx.jpg')
  */
 
 import { App, Plugin, readonly, reactive, nextTick } from 'vue'
@@ -13,6 +13,7 @@ import { PopupSymbol } from './constant'
 
 declare global {
   interface Window {
+    // @ts-ignore
     $popup: Popup
   }
 }
@@ -24,7 +25,7 @@ const createPopupStore = () => {
   })
 
   const state = reactive({
-    visibility: false,
+    visible: false,
     isImage: false,
     // UI options
     border: true,
@@ -35,11 +36,11 @@ const createPopupStore = () => {
   })
 
   const hidden = (cb?: () => void) => {
-    if (!state.visibility) {
+    if (!state.visible) {
       cb?.()
       return
     }
-    state.visibility = false
+    state.visible = false
     state.isImage = false
     image.src = null
     image.attrs = null
@@ -53,7 +54,7 @@ const createPopupStore = () => {
       Object.assign(state, {
         ...options,
         isImage: false,
-        visibility: true
+        visible: true
       })
     })
   }
@@ -64,8 +65,9 @@ const createPopupStore = () => {
       image.attrs = attrs
       Object.assign(state, {
         ...options,
+        border: true,
         isImage: true,
-        visibility: true
+        visible: true
       })
     })
   }
@@ -84,7 +86,10 @@ const createPopupStore = () => {
   }
 }
 
-export interface PopupPluginConfig { exportToGlobal?: boolean }
+export interface PopupPluginConfig {
+  exportToGlobal?: boolean
+}
+// @ts-ignore
 export type Popup = ReturnType<typeof createPopupStore>
 export const createPopup = (): Popup & Plugin => {
   const popupStore = createPopupStore()
@@ -98,7 +103,7 @@ export const createPopup = (): Popup & Plugin => {
       app.component(PopupImageComponent.name as string, PopupImageComponent)
       app.component(PopupRootComponent.name as string, PopupRootComponent)
       if (config?.exportToGlobal) {
-        window.$popup = popupStore
+        ;(window as any).$popup = popupStore
       }
     }
   }

@@ -1,62 +1,92 @@
 /**
  * @file Archive state
- * @module store/archive
- * @author Linyj <https://github.com/Linyj>
+ * @module store.archive
+ * @author Surmon <https://github.com/surmon-china>
  */
 
-import { Module, MutationTree, ActionTree } from 'vuex'
-import nodepress from '../services/nodepress'
-import { ARTICLE_API_PATH } from './article'
-import { IRootState } from '.'
+import { defineStore } from 'pinia'
+import { Article } from './article'
+import { Category } from './category'
+import { Tag } from './tag'
+import nodepress from '/@/services/nodepress'
 
-export enum ArchiveModuleMutations {
-  SetArticlesFetching = 'setArticlesFetching',
-  SetArticlesData = 'setArticlesData'
-}
-export enum ArchiveModuleActions {
-  FetchArticles = 'fetchArticles'
+export interface StatisticState {
+  tags: number
+  views: number
+  articles: number
+  comments: number
 }
 
-const state = () => ({
-  articles: {
+export interface ArchiveState {
+  meta: any
+  articles: Article[]
+  categories: Category[]
+  tags: Tag[]
+}
+
+export const useArchiveStore = defineStore('archive', {
+  state: () => ({
     fetching: false,
-    data: [] as Array<$TODO>
+    statistic: null as null | StatisticState,
+    data: null as null | ArchiveState
+  }),
+  getters: {
+    hydrated: (state) => {
+      if (!state.data) {
+        return null
+      }
+
+      const { articles, tags, categories } = state.data
+      const tagMap = new Map(tags.map((tag) => [tag._id, { ...tag, count: 0 }]))
+      const categoryMap = new Map(categories.map((cate) => [cate._id, { ...cate, count: 0 }]))
+      articles.forEach((article) => {
+        ;(article.tag as any as string[]).forEach((t) => {
+          if (tagMap.has(t)) {
+            tagMap.get(t)!.count++
+          }
+        })
+        ;(article.category as any as string[]).forEach((c) => {
+          if (categoryMap.has(c)) {
+            categoryMap.get(c)!.count++
+          }
+        })
+      })
+
+      return {
+        tags: Array.from(tagMap.values()),
+        categories: Array.from(categoryMap.values())
+      }
+    }
+  },
+  actions: {
+    fetchArchive() {
+      if (this.data) {
+        return Promise.resolve()
+      }
+      this.fetching = true
+      return nodepress
+        .get<ArchiveState>('/archive')
+        .then((response) => {
+          this.data = response.result
+        })
+        .finally(() => {
+          this.fetching = false
+        })
+    },
+
+    fetchStatistic() {
+      if (this.statistic) {
+        return Promise.resolve()
+      }
+      this.fetching = true
+      return nodepress
+        .get<StatisticState>('/expansion/statistic')
+        .then((response) => {
+          this.statistic = response.result
+        })
+        .finally(() => {
+          this.fetching = false
+        })
+    }
   }
 })
-
-const mutations: MutationTree<ArchiveState> = {
-  [ArchiveModuleMutations.SetArticlesFetching](state, fetching: boolean) {
-    state.articles.fetching = fetching
-  },
-  [ArchiveModuleMutations.SetArticlesData](state, data) {
-    state.articles.data = data
-  }
-}
-
-const actions: ActionTree<ArchiveState, IRootState> = {
-  [ArchiveModuleActions.FetchArticles]({ state, commit }, params = {}) {
-    if (state.articles.data.length) {
-      return Promise.resolve(state.articles.data)
-    }
-    commit(ArchiveModuleMutations.SetArticlesFetching, true)
-    return nodepress
-      .get(ARTICLE_API_PATH, { params: { per_page: 666, ...params }})
-      .then(response => {
-        commit(ArchiveModuleMutations.SetArticlesData, response.result.data)
-        return response.result.data
-      })
-      .finally(() => {
-        commit(ArchiveModuleMutations.SetArticlesFetching, false)
-      })
-  }
-}
-
-const archiveModule: Module<ArchiveState, IRootState> = {
-  namespaced: true,
-  state,
-  mutations,
-  actions
-}
-
-export type ArchiveState = ReturnType<typeof state>
-export default archiveModule

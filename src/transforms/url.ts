@@ -1,33 +1,29 @@
 /**
  * @file Url transformer
- * @module transformer/url
- * @author Linyj <https://github.com/Linyj>
+ * @module transformer.url
+ * @author Surmon <https://github.com/surmon-china>
  */
 
 import API_CONFIG from '/@/config/api.config'
-import { TunnelModule } from '/@/constants/tunnel'
+import { ProxyModule } from '/@/constants/proxy'
 import { getArticleDetailRoute } from '/@/transforms/route'
 
-export const getTunnelApiPath = (moduleName: TunnelModule) => {
-  return `/${moduleName}`
-}
-
-export const getFileCDNUrl = (uri: string) => {
+export const getTargetCDNURL = (uri: string) => {
   return `${API_CONFIG.CDN}${uri}`
 }
 
-export const getFileProxyUrl = (uri: string) => {
-  return `${API_CONFIG.PROXY}${uri}`
+export const getTargetProxyURL = (uri: string, module: ProxyModule = ProxyModule.Default) => {
+  return `${API_CONFIG.PROXY}/${module}/${encodeURIComponent(uri)}`
 }
 
-export const getPageUrl = (uri: string) => {
+export const getTargetStaticURL = (uri: string) => {
+  return `${API_CONFIG.STATIC}${uri}`
+}
+
+export const getPageURL = (uri: string) => {
   return `${API_CONFIG.FE}${uri}`
 }
 
-export const getArticleDetailUrl = (articleID: string | number) => {
-  return getPageUrl(getArticleDetailRoute(articleID))
-}
-
-export const getGAScriptUrl = (gaMeasurementId: string) => {
-  return `https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`
+export const getArticleDetailURL = (IDOrSlug: string | number) => {
+  return getPageURL(getArticleDetailRoute(IDOrSlug))
 }

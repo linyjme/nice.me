@@ -1,7 +1,7 @@
 /**
- * @file emoji 表情雨服务
- * @module service/emoji-233333
- * @author Linyj <https://github.com/Linyj>
+ * @file emoji rain animation effect
+ * @module service.emoji-233333
+ * @author Surmon <https://github.com/surmon-china>
  */
 
 import Emoji233333 from 'emoji-233333'

@@ -1,8 +1,8 @@
 /**
  * @file popup hook
- * @module service/popup/hook
- * @author Linyj <https://github.com/Linyj>
-*/
+ * @module service.popup.hook
+ * @author Surmon <https://github.com/surmon-china>
+ */
 
 import { inject, onMounted } from 'vue'
 import { PopupSymbol } from './constant'

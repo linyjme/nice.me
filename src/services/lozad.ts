@@ -1,7 +1,7 @@
 /**
- * @file 懒加载
- * @module service/lozad
- * @author Linyj <https://github.com/Linyj>
+ * @file lazy load
+ * @module service.lozad
+ * @author Surmon <https://github.com/surmon-china>
  */
 
 import lozad from 'lozad'

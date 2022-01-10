@@ -1,17 +1,17 @@
 /**
  * @file UA parser
- * @module transformer/ua
- * @author Linyj <https://github.com/Linyj>
+ * @module transformer.ua
+ * @author Surmon <https://github.com/surmon-china>
  */
 
 import parser from 'ua-parser-js'
 import { Language } from '/@/language/data'
 
 export const uaParser = (userAgent: string) => {
-  const parseResult = (parser as $TODO)(userAgent || '')
+  const parseResult = parser(userAgent || '')
   const browserName = String(parseResult.browser.name).toLowerCase()
   const isTargetDevice = (browsers: string[]) => {
-    return browsers.some(browser => browser.toLowerCase() === browserName)
+    return browsers.some((browser) => browser.toLowerCase() === browserName)
   }
 
   return {
@@ -33,14 +33,12 @@ const isTargetLanguageUser = (language: UaLanguage, targetLang: string) => {
     return language.includes(targetLang)
   }
   if (Array.isArray(language)) {
-    return language.some(lang => lang.includes(targetLang))
+    return language.some((lang) => lang.includes(targetLang))
   }
   return false
 }
 export type UaLanguage = string | string[]
 export const isEnUser = (language: UaLanguage) => isTargetLanguageUser(language, Language.En)
 export const isZhUser = (language: UaLanguage) => {
-  return language
-    ? isTargetLanguageUser(language, Language.Zh)
-    : true
+  return language ? isTargetLanguageUser(language, Language.Zh) : true
 }

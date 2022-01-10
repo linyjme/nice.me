@@ -7,9 +7,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# vscode
-.vscode
-
 # test
 test.*
 
@@ -75,38 +72,23 @@ package-lock.json
 # Vuniversal build output
 dist
 
-# vuepress build output
-.vuepress/dist
-
-# Serverless directories
-.serverless
-
 # IDE
 .idea
 
-# DS_Store
+# Mac OS
 .DS_Store
 
 # PWA
 sw.*
 
 # ecosystem
-# ecosystem.config.js
-
-# syndication
-# analytics
-public/sitemap.xml
-public/rss.xml
-# public/scripts/gtag.js
-
-# barrages
-data/barrages.json
+ecosystem.config.js
 
 # Redis
 dump.rdb
 
-# Mac OS
-.DS_Store
-
-# resources
-public/images/ghchart.svg
+# Serverless directories
+.serverless
+.fun
+.s
+code

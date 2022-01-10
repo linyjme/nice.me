@@ -1,16 +1,16 @@
 /**
  * @file app interior extends
- * @module service/interior
- * @author Linyj <https://github.com/Linyj>
+ * @module service.interior
+ * @author Surmon <https://github.com/surmon-china>
  */
 
 import { App } from 'vue'
-import Ulink from '../components/common/ulink'
-import Uimage from '/@/components/common/uimage'
-import Placeholder from '/@/components/common/placeholder'
 import Spin from '/@/components/common/spin.vue'
 import Empty from '/@/components/common/empty.vue'
-import Masonry from '/@/components/common/masonry.vue'
+import Divider from '/@/components/common/divider.vue'
+import Ulink from '/@/components/common/ulink'
+import Uimage from '/@/components/common/uimage'
+import Placeholder from '/@/components/common/placeholder'
 
 import SkeletonBase from '/@/components/common/skeleton/base.vue'
 import SkeletonLine from '/@/components/common/skeleton/line.vue'
@@ -20,12 +20,11 @@ import { Responsive, DesktopOnly } from '/@/components/common/responsive'
 import { ClientOnly } from '/@/components/common/client-only'
 
 export default function (app: App) {
-  // components
-  app.component(Ulink.name, Ulink)
-  app.component(Uimage.name, Uimage)
   app.component(Spin.name as string, Spin)
   app.component(Empty.name as string, Empty)
-  app.component(Masonry.name as string, Masonry)
+  app.component(Divider.name as string, Divider)
+  app.component(Ulink.name, Ulink)
+  app.component(Uimage.name, Uimage)
   app.component(Placeholder.name, Placeholder)
 
   app.component(ClientOnly.name, ClientOnly)

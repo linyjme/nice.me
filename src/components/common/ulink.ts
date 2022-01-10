@@ -1,7 +1,7 @@
 /**
  * @file Universal Link
  * @description Render Link with external/nofollow/noopener
- * @author Linyj <https://github.com/Linyj>
+ * @author Surmon <https://github.com/surmon-china>
  */
 
 import { AnchorHTMLAttributes, defineComponent, h } from 'vue'
@@ -31,10 +31,14 @@ export default defineComponent({
         customAttrs.target = '_blank'
       }
 
-      return h('a', {
-        ...linkAttrs,
-        ...customAttrs
-      }, context.slots.default?.() || text)
+      return h(
+        'a',
+        {
+          ...linkAttrs,
+          ...customAttrs
+        },
+        context.slots.default?.() || text
+      )
     }
   }
 })

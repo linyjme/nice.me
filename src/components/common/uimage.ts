@@ -1,13 +1,13 @@
 /**
  * @file Universal image
  * @description Render image with CDN/Proxy/Defer
- * @author Linyj <https://github.com/Linyj>
+ * @author Surmon <https://github.com/surmon-china>
  */
 
 import { defineComponent, ref, h } from 'vue'
-import { isClient } from '/@/environment'
-import { useEnhancer } from '/@/enhancer'
-import { getFileCDNUrl, getFileProxyUrl } from '/@/transforms/url'
+import { useEnhancer } from '/@/app/enhancer'
+import { getTargetCDNURL, getTargetProxyURL } from '/@/transforms/url'
+import { onClient } from '/@/universal'
 
 export default defineComponent({
   name: 'Uimage',
@@ -22,33 +22,34 @@ export default defineComponent({
   },
   setup(props) {
     const { defer } = useEnhancer()
-    const loadImage = ref(false)
-    if (props.defer && isClient) {
-      defer.addTask(() => {
-        loadImage.value = true
+    const deferRenderable = ref(false)
+    if (props.defer) {
+      onClient(() => {
+        defer.addTask(() => {
+          deferRenderable.value = true
+        })
       })
     }
-    return { loadImage }
-  },
-  render() {
-    const { src, cdn, proxy, defer, ...props } = this.$props
 
-    let imageSrc = src
-    if (cdn) {
-      imageSrc = getFileCDNUrl(src)
-    }
-    if (proxy) {
-      imageSrc = getFileProxyUrl(src)
-    }
+    return () => {
+      const { src, cdn, proxy, defer, ...restProps } = props
 
-    if (defer && !this.loadImage) {
-      return null
-    }
+      let imageSrc = src
+      if (cdn) {
+        imageSrc = getTargetCDNURL(src)
+      }
+      if (proxy) {
+        imageSrc = getTargetProxyURL(src)
+      }
+      if (defer && !deferRenderable.value) {
+        return null
+      }
 
-    return h('img', {
-      draggable: false,
-      ...props,
-      src: imageSrc
-    })
+      return h('img', {
+        draggable: false,
+        ...restProps,
+        src: imageSrc
+      })
+    }
   }
 })

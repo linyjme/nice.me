@@ -1,7 +1,7 @@
 /**
  * @file Network
- * @module service/network
- * @author Linyj <https://github.com/Linyj>
+ * @module service.network
+ * @author Surmon <https://github.com/surmon-china>
  */
 
 import axios from 'axios'
@@ -14,4 +14,6 @@ export const ping = (url: string) => {
   })
 }
 
-export const isOutsideOfGFW = () => ping('https://www.google.com.hk')
+export const isOutsideOfGFW = () => {
+  return ping('https://www.google.com.hk')
+}

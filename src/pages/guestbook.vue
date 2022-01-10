@@ -1,13 +1,28 @@
 <template>
-  <div
-    class="guestbook-page"
-    :class="{
-      mobile: isMobile,
-      dark: isDarkTheme
-    }"
-  >
-    <div class="banner">
-      <uimage cdn class="image" src="/images/page-guestbook/banner.jpg" />
+  <div class="guestbook-page" :class="{ dark: isDarkTheme }">
+    <!-- mobile-banner -->
+    <page-banner
+      v-if="isMobile"
+      class="mobile-banner"
+      :is-mobile="true"
+      :position="70"
+      :blur="false"
+      :image="bannerImage"
+    >
+      <template #title>
+        <i18n :lkey="LANGUAGE_KEYS.PAGE_GUESTBOOK" />
+      </template>
+      <template #description>
+        <i18n :lkey="LANGUAGE_KEYS.GUESTBOOK_SLOGAN" />
+      </template>
+    </page-banner>
+    <!-- desktop-banner -->
+    <div class="desktop-banner" v-else>
+      <uimage cdn class="image" :src="bannerImage" />
+      <button class="like" :class="{ liked: isLiked }" :disabled="isLiked" @click="handleLike">
+        <i class="icon iconfont icon-heart"></i>
+        <span class="count">{{ isLiked ? `${siteLikes - 1} + 1` : siteLikes }}</span>
+      </button>
       <span class="slogan">
         <span class="text">
           <i18n :lkey="LANGUAGE_KEYS.GUESTBOOK_SLOGAN" />
@@ -15,71 +30,110 @@
       </span>
     </div>
     <div class="comment">
-      <comment :post-id="0" :likes="siteLikes" />
+      <comment :post-id="0" :plain="isMobile" :fetching="mockCommentLoading" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
   import { defineComponent, ref, computed } from 'vue'
-  import { isClient } from '/@/environment'
-  import { useEnhancer } from '/@/enhancer'
-  import { prefetch } from '/@/universal'
-  import { Modules, getNamespace } from '/@/store'
-  import { OptionModuleActions, OptionModuleMutations } from '/@/store/option'
-  import { CommentModuleActions } from '/@/store/comment'
+  import { isClient } from '/@/app/environment'
+  import { useEnhancer } from '/@/app/enhancer'
+  import { useUniversalFetch } from '/@/universal'
+  import { useMetaStore } from '/@/store/meta'
+  import { useCommentStore } from '/@/store/comment'
+  import { useUniversalStore } from '/@/store/universal'
+  import { GAEventCategories } from '/@/constants/gtag'
+  import { CommentPostType } from '/@/constants/state'
+  import { Language } from '/@/language/data'
   import { LANGUAGE_KEYS } from '/@/language/key'
+  import { firstUpperCase } from '/@/transforms/text'
+  import { META } from '/@/config/app.config'
+  import PageBanner from '/@/components/common/banner.vue'
   import Comment from '/@/components/comment/index.vue'
 
   export default defineComponent({
-    name: 'Guestbook',
+    name: 'GuestbookPage',
     components: {
+      PageBanner,
       Comment
     },
+    props: {
+      isMobile: {
+        type: Boolean,
+        default: false
+      }
+    },
     setup() {
-      const { i18n, store, helmet, isMobile, isDarkTheme, isZhLang } = useEnhancer()
-      const siteLikes = computed(() => {
-        const appOption = store.state.option.appOption.data
-        return appOption ? appOption.meta.likes : 0
+      const GUESTBOOK_POST_ID = CommentPostType.Guestbook
+      const { i18n, meta, gtag, globalState, isDarkTheme, isZhLang } = useEnhancer()
+      const metaStore = useMetaStore()
+      const commentStore = useCommentStore()
+      const universalStore = useUniversalStore()
+      const isLiked = computed(() => universalStore.isLikedPage(GUESTBOOK_POST_ID))
+      const siteLikes = computed(() => metaStore.appOptions.data?.meta.likes || 0)
+      const bannerImage = `/images/page-guestbook/banner.jpg`
+      // MARK: [SSR & not first page] only
+      const mockCommentLoading = ref(isClient && globalState.isHydrated.value)
+
+      meta(() => {
+        const enTitle = firstUpperCase(i18n.t(LANGUAGE_KEYS.PAGE_GUESTBOOK, Language.En)!)
+        const titles = isZhLang.value ? [i18n.t(LANGUAGE_KEYS.PAGE_GUESTBOOK), enTitle] : [enTitle]
+        return { pageTitle: titles.join(' | '), description: `给 ${META.author} 留言` }
       })
 
-      helmet(() => {
-        const prefix = isZhLang.value
-          ? `${i18n.t(LANGUAGE_KEYS.PAGE_GUESTBOOK)} | `
-          : ''
-        return { title: prefix + 'Guestbook' }
-      })
-
-      const fetchAllData = () => Promise.all([
-        store.dispatch(
-          getNamespace(Modules.Option, OptionModuleActions.FetchAppOption),
-          true
-        ),
-        store.dispatch(
-          getNamespace(Modules.Comment, CommentModuleActions.FetchList),
-          { post_id: 0, delay: isClient ? 368 : 0 }
-        )
-      ])
-
-      const resultData = {
-        LANGUAGE_KEYS,
-        isMobile,
-        isDarkTheme,
-        siteLikes
+      const fetchAllData = () => {
+        return Promise.all([
+          metaStore.fetchAppOptions(true),
+          commentStore.fetchList({ post_id: GUESTBOOK_POST_ID })
+        ]).then(() => {
+          mockCommentLoading.value = false
+        })
       }
 
-      return prefetch(fetchAllData, resultData)
+      const handleLike = async () => {
+        if (isLiked.value) {
+          return false
+        }
+        gtag?.event('like_site', {
+          event_category: GAEventCategories.Universal
+        })
+
+        try {
+          await metaStore.postSiteLike()
+          universalStore.likePage(GUESTBOOK_POST_ID)
+        } catch (error) {
+          const message = i18n.t(LANGUAGE_KEYS.POST_ACTION_ERROR)
+          console.warn(message, error)
+          alert(message)
+        }
+      }
+
+      useUniversalFetch(() => fetchAllData())
+
+      return {
+        LANGUAGE_KEYS,
+        bannerImage,
+        mockCommentLoading,
+        isDarkTheme,
+        isLiked,
+        siteLikes,
+        handleLike
+      }
     }
   })
 </script>
 
 <style lang="scss" scoped>
-  @import 'src/assets/styles/init.scss';
+  @import 'src/styles/init.scss';
 
   .guestbook-page {
-    .banner {
+    .mobile-banner {
+      margin-bottom: $lg-gap;
+    }
+
+    .desktop-banner {
       position: relative;
-      overflow: hidden;
       margin-bottom: $lg-gap;
       width: 100%;
       height: 19rem;
@@ -88,11 +142,38 @@
       @include radius-box($lg-radius);
 
       .image {
-        margin-top: - ($gap * 6);
+        margin-top: -($gap * 6);
         transition: all $transition-time-slow;
 
         &:hover {
           transform: rotate(2deg) scale(1.1);
+        }
+      }
+
+      .like {
+        position: absolute;
+        left: $lg-gap * 2;
+        bottom: $gap * 2;
+        display: inline-flex;
+        align-items: center;
+
+        &.liked,
+        &:hover {
+          .icon {
+            color: $red;
+          }
+        }
+
+        .icon {
+          margin-right: $sm-gap;
+          color: rgba($red, 0.6);
+          font-size: $font-size-h2;
+          @include color-transition();
+        }
+
+        .count {
+          color: rgba($white, 0.8);
+          font-weight: bold;
         }
       }
 
@@ -101,24 +182,20 @@
         display: block;
         position: absolute;
         right: $lg-gap * 2;
-        bottom: $lg-gap * 2;
+        bottom: $gap * 2;
         height: $size;
         line-height: $size;
         padding: 0 $sm-gap;
         padding-left: 3rem;
-        opacity: .8;
+        border-top-right-radius: $mini-radius;
+        border-bottom-right-radius: $mini-radius;
+        opacity: 0.8;
         font-weight: 700;
-        color: $body-bg;
         cursor: progress;
-        background: linear-gradient(
-          to left,
-          $module-bg-lighter,
-          $module-bg,
-          transparent
-        );
+        background: linear-gradient(to left, $module-bg-lighter, $module-bg, transparent);
 
         .text {
-          letter-spacing: .3px;
+          letter-spacing: 0.3px;
           font-weight: bold;
           color: $text;
           background-clip: text;
@@ -131,18 +208,12 @@
     }
 
     &.dark {
-      .banner {
+      .desktop-banner {
         .slogan {
           .text {
             -webkit-text-fill-color: $text !important;
           }
         }
-      }
-    }
-
-    &.mobile {
-      .banner {
-        height: 12rem;
       }
     }
   }

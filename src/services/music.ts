@@ -1,25 +1,25 @@
 /**
  * @file Music player
- * @module service/music
- * @author Linyj <https://github.com/Linyj>
+ * @module service.music
+ * @author Surmon <https://github.com/surmon-china>
  * @document https://521dimensions.com/open-source/amplitudejs/docs
  */
 
 import { App, Plugin, inject, readonly, reactive, computed } from 'vue'
-import { getFileProxyUrl } from '/@/transforms/url'
+import { UNDEFINED } from '/@/constants/value'
 import { TunnelModule } from '/@/constants/tunnel'
-import type { ISong } from '/@/server/tunnel/music'
+import { ProxyModule } from '/@/constants/proxy'
+import { getTargetProxyURL } from '/@/transforms/url'
+import type { Song } from '/@/server/getters/music'
 import tunnel from '/@/services/tunnel'
 
-export interface MusicConfig {
+export interface PlayerConfig {
   amplitude: any
   volume?: number
   autoStart?: boolean
 }
 
-type MusicId = string | number
-
-const createMusicPlayer = (config: MusicConfig) => {
+const createMusicPlayer = (config: PlayerConfig) => {
   const { amplitude } = config
 
   // Player state
@@ -41,7 +41,7 @@ const createMusicPlayer = (config: MusicConfig) => {
     playing: false,
     // 进度
     speeds: 0,
-    progress: 0,
+    progress: 0
   })
 
   // mute state
@@ -50,29 +50,25 @@ const createMusicPlayer = (config: MusicConfig) => {
   // 原始播放列表
   const songList = reactive({
     fetching: false,
-    data: [] as Array<ISong>
+    data: [] as Array<Song>
   })
 
-  // 可消费播放列表
-  const playableSongList = computed<ISong[]>(() => {
-    return songList.data.map(song => ({
+  // playable song list
+  const playableSongList = computed<Song[]>(() => {
+    return songList.data.map((song) => ({
       ...song,
       // https://binaryify.github.io/NeteaseCloudMusicApi/#/?id=%e8%8e%b7%e5%8f%96%e9%9f%b3%e4%b9%90-url
       url: `https://music.163.com/song/media/outer/url?id=${song.id}.mp3`,
-      // MARK: 403!
-      // url: song.url
-      //   ? song.url.replace(/(http:\/\/|https:\/\/)/gi, getFileProxyUrl('/music/'))
-      //   : null as any as string,
       cover_art_url: song.cover_art_url
-        ? getFileProxyUrl(song.cover_art_url.replace('http://', '/music/') + '?param=600y600')
-        : null as any as string,
+        ? getTargetProxyURL(song.cover_art_url + '?param=600y600', ProxyModule.NetEasyMusic)
+        : (null as any as string)
     }))
   })
 
   const fetchSongList = async () => {
     try {
       songList.fetching = true
-      songList.data = await tunnel.dispatch<ISong[]>(TunnelModule.Music)
+      songList.data = await tunnel.dispatch<Song[]>(TunnelModule.Music)
       state.count = songList.data.length
     } catch (error) {
       songList.data = []
@@ -83,62 +79,12 @@ const createMusicPlayer = (config: MusicConfig) => {
     }
   }
 
-  // MARK: 暂时停用
-  const fetchSongLrc = async (songId: MusicId) => {}
-
-  // eslint-disable-next-line vue/return-in-computed-property
-  const currentSong = computed<ISong | void>(() => {
+  const currentSong = computed<Song | void>(() => {
     if (state.inited && state.index !== undefined) {
       return amplitude.getActiveSongMetadata()
+    } else {
+      return UNDEFINED
     }
-  })
-
-  const currentSongRealTimeLrc = computed<string | null>(() => {
-    return null
-
-    /*
-    if (!state.inited) {
-      return null
-    }
-    const lrc = musicLrc.data
-    const lyric = lrc && !lrc.nolyric && lrc.lrc
-
-    // not roll
-    if (!lyric || lrc.version < 3) {
-      return null
-    }
-
-    const currentSongLrcs = lyric
-      .split('\n')
-      .map((timeSentence: string) => {
-        // eslint-disable-next-line no-useless-escape
-        let time: $TODO = /\[([^\[\]]*)\]/.exec(timeSentence)
-        time = time?.length && time[1]
-        time = time?.split(':').map((t: string) => Number(t))
-        time = time?.length && time.length > 1 && time[0] * 60 + time[1]
-        time = time || ''
-        let sentence: $TODO = /([^\]]+)$/.exec(timeSentence)
-        sentence = sentence?.[1] || ''
-        return { time, sentence }
-      })
-      .filter((timestamp: $TODO) => timestamp.time) as Array<{
-        time: number
-        sentence: string
-      }>
-
-    // empty
-    if (!currentSongLrcs.length) {
-      return null
-    }
-
-    const targetSentence = currentSongLrcs.find(
-      (timestamp, index, array) => {
-        const next = array[index + 1]
-        return timestamp.time <= state.speeds && next && next.time > state.speeds
-      }
-    )
-    return targetSentence ? targetSentence.sentence : '...'
-    */
   })
 
   const play = () => amplitude.play()
@@ -147,11 +93,9 @@ const createMusicPlayer = (config: MusicConfig) => {
   const nextSong = () => amplitude.next()
   const changeVolume = (volume: number) => amplitude.setVolume(volume)
   const toggleMuted = () => changeVolume(muted.value ? initVolume : 0)
-  const togglePlay = () => amplitude.getPlayerState() === 'playing'
-    ? pause()
-    : play()
+  const togglePlay = () => (amplitude.getPlayerState() === 'playing' ? pause() : play())
 
-  const initPlayer = (songs: ISong[]) => {
+  const initPlayer = (songs: Song[]) => {
     amplitude.init({
       // 歌曲切换之间的延时
       // https://521dimensions.com/open-source/amplitudejs/docs/configuration/delay.html#public-function
@@ -159,20 +103,10 @@ const createMusicPlayer = (config: MusicConfig) => {
       debug: false,
       volume: state.volume,
       songs,
-      /*
-      songs: songs.map(song => ({
-        ...song,
-        time_callbacks: {
-          // 当任何一首音乐播放到第三秒时开始获取歌词
-          3: () => fetchSongLrc((currentSong.value as ISong).id)
-        }
-      })),
-      */
       start_song: 0,
       continue_next: true,
       callbacks: {
         initialized: () => {
-          // console.log('----initialized')
           state.ready = true
           state.inited = true
         },
@@ -215,32 +149,31 @@ const createMusicPlayer = (config: MusicConfig) => {
     amplitude.setRepeat(true)
   }
 
-  const start = () => {
-    fetchSongList().then(() => {
+  const start = async () => {
+    try {
+      await fetchSongList()
       if (!playableSongList.value.length) {
         state.ready = false
         console.warn('播放列表为空，未找到有效音乐，无法初始化！')
         return
       }
-
       initPlayer(playableSongList.value)
-      window.$defer.addTask(() => {
-        window.onmousemove = () => {
-          state.playing || play()
-          window.onmousemove = null
-        }
-      })
-    }).catch(error => {
+      // window.$defer.addTask(() => {
+      //   window.onmousemove = () => {
+      //     state.playing || play()
+      //     window.onmousemove = null
+      //   }
+      // })
+    } catch (error) {
       state.ready = false
       console.warn('播放列表请求失败，无法初始化！', error)
-    })
+    }
   }
 
   return {
     state: readonly(state),
     muted,
     currentSong,
-    currentSongRealTimeLrc,
 
     start,
     play,
@@ -255,7 +188,7 @@ const createMusicPlayer = (config: MusicConfig) => {
 
 const MusicPlayerSymbol = Symbol('music-player')
 export type Music = ReturnType<typeof createMusicPlayer>
-export const createMusic = (config: MusicConfig): Music & Plugin => {
+export const createMusic = (config: PlayerConfig): Music & Plugin => {
   const musicPlayer = createMusicPlayer(config)
   if (config.autoStart) {
     musicPlayer.start()

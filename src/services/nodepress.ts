@@ -1,17 +1,17 @@
 /**
  * @file HTTP requester service
- * @module service/http
- * @author Linyj <https://github.com/Linyj>
+ * @module service.http
+ * @author Surmon <https://github.com/surmon-china>
  */
 
 import axios, { AxiosInstance } from 'axios'
-import { isClient } from '/@/environment'
 import { BAD_REQUEST } from '/@/constants/error'
 import API_CONFIG from '/@/config/api.config'
+import { isClient } from '/@/app/environment'
 
 export enum HTTPStatus {
   Error = 'error',
-  Success = 'success',
+  Success = 'success'
 }
 
 type HTTPResult<T = any> = {
@@ -22,42 +22,69 @@ type HTTPResult<T = any> = {
 
 const nodepress = axios.create({
   baseURL: API_CONFIG.NODEPRESS,
+  withCredentials: true
 })
 
 nodepress.interceptors.response.use(
-  response => response.data.status === HTTPStatus.Success
-    ? response.data
-    : Promise.reject(response.data)
-  ,
-  error => {
+  (response) => {
+    if (response.headers['content-type'].includes('json')) {
+      if (response.data.status !== HTTPStatus.Success) {
+        return Promise.reject(response.data)
+      }
+    }
+
+    return response.data
+  },
+  (error) => {
     const errorJSON = error.toJSON()
-    const messageText = error.response?.data?.message || 'Error'
-    const errorText = error.response?.data?.error || error.response?.statusText || errorJSON.message
     const errorInfo = {
       ...errorJSON,
       config: error.config,
-      request: error.request,
-      response: error.response,
-      code: error.code || error.response?.status || BAD_REQUEST,
-      message: messageText + ': ' + errorText
+      code: errorJSON.status || error.response?.status || BAD_REQUEST,
+      message: error.response?.data?.error || error.response?.statusText || errorJSON.message
     }
-    isClient
-      ? console.debug('axios error:', errorInfo)
-      : console.debug('axios error:', errorInfo.message)
+
+    console.debug(
+      'axios error:',
+      isClient
+        ? error
+        : {
+            axiosName: errorJSON.name,
+            axiosMessage: errorJSON.message,
+            npError: errorInfo.message,
+            npMessage: error.response?.data?.message || '',
+            status: errorInfo.code,
+            method: errorJSON.config.method,
+            baseURL: errorJSON.config.baseURL,
+            params: errorJSON.config.params,
+            url: errorJSON.config.url,
+            data: errorJSON.config.data,
+            headers: errorJSON.config.headers
+          }
+    )
+
     return Promise.reject(errorInfo)
   }
 )
 
 const service = {
   $: nodepress,
-  request: <T = any>(...args: Parameters<AxiosInstance['request']>): Promise<HTTPResult<T>> => nodepress.request(...args),
-  get: <T = any>(...args: Parameters<AxiosInstance['get']>): Promise<HTTPResult<T>> => nodepress.get(...args),
-  delete: <T = any>(...args: Parameters<AxiosInstance['delete']>): Promise<HTTPResult<T>> => nodepress.delete(...args),
-  head: <T = any>(...args: Parameters<AxiosInstance['head']>): Promise<HTTPResult<T>> => nodepress.head(...args),
-  options: <T = any>(...args: Parameters<AxiosInstance['options']>): Promise<HTTPResult<T>> => nodepress.options(...args),
-  post: <T = any>(...args: Parameters<AxiosInstance['post']>): Promise<HTTPResult<T>> => nodepress.post(...args),
-  put: <T = any>(...args: Parameters<AxiosInstance['put']>): Promise<HTTPResult<T>> => nodepress.put(...args),
-  patch: <T = any>(...args: Parameters<AxiosInstance['patch']>): Promise<HTTPResult<T>> => nodepress.patch(...args),
+  request: <T = any>(...args: Parameters<AxiosInstance['request']>): Promise<HTTPResult<T>> =>
+    nodepress.request(...args),
+  get: <T = any>(...args: Parameters<AxiosInstance['get']>): Promise<HTTPResult<T>> =>
+    nodepress.get(...args),
+  delete: <T = any>(...args: Parameters<AxiosInstance['delete']>): Promise<HTTPResult<T>> =>
+    nodepress.delete(...args),
+  head: <T = any>(...args: Parameters<AxiosInstance['head']>): Promise<HTTPResult<T>> =>
+    nodepress.head(...args),
+  options: <T = any>(...args: Parameters<AxiosInstance['options']>): Promise<HTTPResult<T>> =>
+    nodepress.options(...args),
+  post: <T = any>(...args: Parameters<AxiosInstance['post']>): Promise<HTTPResult<T>> =>
+    nodepress.post(...args),
+  put: <T = any>(...args: Parameters<AxiosInstance['put']>): Promise<HTTPResult<T>> =>
+    nodepress.put(...args),
+  patch: <T = any>(...args: Parameters<AxiosInstance['patch']>): Promise<HTTPResult<T>> =>
+    nodepress.patch(...args)
 }
 
 export default service

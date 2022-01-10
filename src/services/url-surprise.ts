@@ -1,7 +1,7 @@
 /**
  * @file Url surprise
- * @module service/url-surprise
- * @author Linyj <https://github.com/Linyj>
+ * @module service.url-surprise
+ * @author Surmon <https://github.com/surmon-china>
  */
 
 import { Router } from 'vue-router'
@@ -28,9 +28,7 @@ export const getUrlSurprise = (router: Router) => {
       const loopEmojis = () => {
         let emoji = ''
         for (let i = 0; i < 10; i++) {
-          const index = Math.floor(
-            emojis.length * ((Math.sin(Date.now() / 100 + i) + 1) / 2)
-          )
+          const index = Math.floor(emojis.length * ((Math.sin(Date.now() / 100 + i) + 1) / 2))
           emoji += '👶' + emojis[index]
         }
         replaceLocation(emoji)

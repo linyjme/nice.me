@@ -1,7 +1,7 @@
 /**
  * @file sticky event hack lib
- * @module service/sticky
- * @author Linyj <https://github.com/Linyj>
+ * @module service.sticky
+ * @author Surmon <https://github.com/surmon-china>
  */
 
 import StickyEvents from 'sticky-events'

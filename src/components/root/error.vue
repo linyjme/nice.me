@@ -8,32 +8,32 @@
     <p class="link" @click="handleResolveRoute">
       <slot name="resolve-text" />
     </p>
-<!--    <uimage cdn class="logo" src="/images/logo.svg" />-->
+    <uimage cdn class="logo" src="/images/logo.svg" />
   </div>
 </template>
 
 <script lang="ts">
   import { defineComponent, PropType } from 'vue'
-  import { useEnhancer } from '/@/enhancer'
-  import { RenderError } from '/@/state'
+  import { useEnhancer } from '/@/app/enhancer'
+  import { RenderError } from '/@/app/state'
   import { LANGUAGE_KEYS } from '/@/language/key'
 
-  export enum Events {
+  export enum ErrorEvent {
     Resolve = 'resolve'
   }
   export default defineComponent({
     name: 'Error',
-    emits: [Events.Resolve],
     props: {
       error: {
         type: Object as PropType<RenderError>,
         required: true
       }
     },
+    emits: [ErrorEvent.Resolve],
     setup(props, context) {
       const { isDarkTheme } = useEnhancer()
       const handleResolveRoute = () => {
-        context.emit(Events.Resolve)
+        context.emit(ErrorEvent.Resolve)
       }
 
       return {
@@ -46,7 +46,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import 'src/assets/styles/init.scss';
+  @import 'src/styles/init.scss';
 
   .error {
     top: 0;
@@ -82,15 +82,17 @@
 
     .logo {
       width: 8rem;
-      opacity: .1;
+      opacity: 0.1;
       position: fixed;
       bottom: 2rem;
       filter: $theme-logo-rotate;
     }
 
-    .code, .link, .message {
+    .code,
+    .link,
+    .message {
       color: $text-secondary;
-      animation: error-item ease-out both .6s $transition-time-normal;
+      animation: error-item ease-out both 0.6s $transition-time-normal;
     }
 
     @keyframes code-wave {
@@ -118,20 +120,17 @@
       font-size: 10em;
       font-weight: normal;
       margin: 0;
-      background-image: url('/images/wave.png');
+      background-image: cdn-url('/images/page-error/wave.png');
       background-size: cover;
       background-repeat: repeat-x;
       background-position: center;
       -webkit-background-clip: text;
-      color: rgba(darken($white, 20%), 20%);
-      animation:
-        error-item ease-out both .6s $transition-time-normal,
-        code-wave ease-out both .6s $transition-time-normal,
-        code-wave-play linear 2s infinite;
+      color: rgba(darken($white, 30%), 20%);
+      animation: error-item ease-out both 0.6s $transition-time-normal,
+        code-wave ease-out both 0.6s $transition-time-normal, code-wave-play linear 2s infinite;
     }
 
     .message {
-      font-family: DINRegular;
       font-weight: normal;
       margin-top: 0;
       margin-bottom: 2rem;

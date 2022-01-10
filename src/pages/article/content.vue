@@ -1,16 +1,11 @@
 <template>
-  <div
-    ref="element"
-    class="detail"
-    :class="{ mobile: isMobile }"
-  >
+  <div ref="element" class="detail">
     <transition name="module">
       <div
-        v-if="!fetching"
         class="oirigin"
         :class="{
-          self: isOriginal,
-          other: isReprint,
+          original: isOriginal,
+          reprint: isReprint,
           hybrid: isHybrid
         }"
       >
@@ -19,193 +14,147 @@
         <i18n :lkey="LANGUAGE_KEYS.ORIGIN_HYBRID" v-else-if="isHybrid" />
       </div>
     </transition>
-    <placeholder
-      :loading="fetching"
-      @after-enter="handleContentAnimateDone"
-    >
-      <template #loading>
-        <div class="skeleton" key="skeleton">
-          <skeleton-line class="title" />
-          <skeleton-paragraph
-            class="content"
-            :lines="9"
-            line-height="1.2em"
-          />
-        </div>
-      </template>
-      <template #default>
-        <div class="knowledge" key="knowledge">
-          <h2 class="title">{{ article?.title }}</h2>
-          <div
-            class="markdown-html"
-            :id="contentElementIds.default"
-            v-html="content.default"
-          />
-          <transition
-            name="module"
-            mode="out-in"
-            @after-enter="handleRenderMoreAnimateDone"
-          >
-            <div v-if="isRenderMoreEnabled" class="readmore">
-              <button
-                class="readmore-btn"
-                :disabled="longFormRenderState.rendering"
-                @click="handleRenderMore"
+    <div class="knowledge" key="knowledge">
+      <div class="title">
+        <h2 class="text">{{ article.title }}</h2>
+        <div class="meta">
+          <i class="iconfont icon-read"></i>
+          <i18n>
+            <template #zh>
+              <span
+                >共 {{ articleDetailStore.contentLength }} 字，需阅读
+                {{ articleDetailStore.readMinutes }} 分钟</span
               >
-                <i18n
-                  :lkey="longFormRenderState.rendering
-                    ? LANGUAGE_KEYS.ARTICLE_RENDERING
-                    : LANGUAGE_KEYS.ARTICLE_READ_ALL"
-                />
-                <i class="iconfont icon-next-bottom"></i>
-              </button>
-            </div>
-            <div
-              class="markdown-html"
-              :id="contentElementIds.leftover"
-              v-else-if="longFormRenderState.rendered"
-              v-html="content.leftover"
-            />
-          </transition>
+            </template>
+            <template #en>
+              <span
+                >{{ articleDetailStore.contentLength }} words,
+                {{ articleDetailStore.readMinutes }} min read</span
+              >
+            </template>
+          </i18n>
+          <divider type="vertical" class="vertical" />
+          <span>
+            <i class="iconfont icon-clock-outline"></i>
+            <span>{{ publishedAt(article.create_at) }}</span>
+          </span>
+          <divider type="vertical" class="vertical" />
+          <span>
+            <i class="iconfont icon-eye"></i>
+            <span>{{ article.meta.views }}&nbsp;</span>
+            <i18n :lkey="LANGUAGE_KEYS.ARTICLE_VIEWS" />
+          </span>
         </div>
-      </template>
-    </placeholder>
+      </div>
+      <div
+        class="markdown-html"
+        :id="ARTICLE_CONTENT_ELEMENT_IDS.default"
+        v-html="articleDetailStore.defaultContent?.html"
+      />
+      <transition name="module" mode="out-in" @after-enter="handleRenderMoreAnimateDone">
+        <div v-if="isRenderMoreEnabled" class="readmore">
+          <button class="readmore-btn" :disabled="isRenderMoreContent" @click="handleRenderMore">
+            <i18n
+              :lkey="
+                isRenderMoreContent
+                  ? LANGUAGE_KEYS.ARTICLE_RENDERING
+                  : LANGUAGE_KEYS.ARTICLE_READ_ALL
+              "
+            />
+            <i class="iconfont icon-loadmore"></i>
+          </button>
+        </div>
+        <div
+          class="markdown-html"
+          :id="ARTICLE_CONTENT_ELEMENT_IDS.more"
+          v-else-if="articleDetailStore.renderedFullContent"
+          v-html="articleDetailStore.moreContent?.html || ''"
+        />
+      </transition>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-  import { defineComponent, ref, reactive, computed, nextTick, onMounted } from 'vue'
-  import { useEnhancer } from '/@/enhancer'
-  import { Modules, getNamespace } from '/@/store'
-  import { TagModuleGetters } from '/@/store/tag'
-  import { ArticleModuleActions } from '/@/store/article'
+  import { defineComponent, ref, computed, nextTick, onMounted, PropType } from 'vue'
+  import { useEnhancer } from '/@/app/enhancer'
+  import { Article, useArticleDetailStore } from '/@/store/article'
   import { LOZAD_CLASS_NAME, LOADED_CLASS_NAME } from '/@/services/lozad'
-  import ArticleListHeader from '/@/components/archive/header.vue'
-  import ArticleList from '/@/components/archive/list.vue'
-  import { isClient } from '/@/environment'
-  import { markdownToHTML } from '/@/transforms/markdown'
-  import { LANGUAGE_KEYS } from '/@/language/key'
   import { isOriginalType, isHybridType, isReprintType } from '/@/transforms/state'
-  import { getArchiveArticleThumbnailUrl } from '/@/transforms/thumbnail'
+  import { humanizeYMD } from '/@/transforms/moment'
+  import { LANGUAGE_KEYS } from '/@/language/key'
+
+  const ARTICLE_CONTENT_ELEMENT_IDS = {
+    default: 'article_content_default',
+    more: 'article_content_more'
+  }
 
   export default defineComponent({
     name: 'ArticleContent',
     props: {
-      article: Object,
-      fetching: {
-        type: Boolean,
+      article: {
+        type: Object as PropType<Article>,
         required: true
       }
     },
-    setup(props, context) {
-      const { store, globalState, isMobile } = useEnhancer()
+    setup(props) {
+      const { i18n } = useEnhancer()
+      const articleDetailStore = useArticleDetailStore()
+      const isHybrid = computed(() => isHybridType(props.article.origin!))
+      const isReprint = computed(() => isReprintType(props.article.origin!))
+      const isOriginal = computed(() => isOriginalType(props.article.origin!))
+
       const element = ref<HTMLElement>()
-      const tagMap = computed(() => store.getters[getNamespace(Modules.Tag, TagModuleGetters.FullNameTags)])
-      const isHybrid = isHybridType(props.article?.origin)
-      const isReprint = isReprintType(props.article?.origin)
-      const isOriginal = isOriginalType(props.article?.origin)
-
-      const longFormRenderState = reactive({
-        rendering: false,
-        rendered: false
-      })
-
-      const isLongFormContent = computed(() => {
-        return props.article?.content.length > 13688
-      })
+      const isRenderMoreContent = ref(false)
       const isRenderMoreEnabled = computed(() => {
-        return isLongFormContent.value && !longFormRenderState.rendered
-      })
-
-      const getContentSplitIndex = (content: string) => {
-        // 坐标优先级：H4 -> H3 -> Code -> \n\n
-        const shortContent = content.substring(0, 11688)
-        const lastH4Index = shortContent.lastIndexOf('\n####')
-        const lastH3Index = shortContent.lastIndexOf('\n###')
-        const lastCodeIndex = shortContent.lastIndexOf('\n\n```')
-        const lastLineIndex = shortContent.lastIndexOf('\n\n**')
-        const lastReadindex = Math.max(lastH4Index, lastH3Index, lastCodeIndex, lastLineIndex)
-        return lastReadindex
-      }
-
-      // article content
-      const content = computed(() => {
-        const content = props.article?.content
-        const result = {
-          default: '',
-          leftover: ''
-        }
-
-        if (!content) {
-          return result
-        }
-
-        const parseMarkdown = (content: string) => {
-          return markdownToHTML(content, {
-            tagMap: tagMap.value,
-            relink: true,
-            html: true
-          })
-        }
-
-        if (isLongFormContent.value) {
-          const index = getContentSplitIndex(content)
-          result.default = parseMarkdown(content.substring(0, index))
-          result.leftover = parseMarkdown(content.substring(index))
-        } else {
-          result.default = parseMarkdown(content)
-          result.leftover = ''
-        }
-        return result
+        return articleDetailStore.isLongContent && !articleDetailStore.renderedFullContent
       })
 
       const handleRenderMore = () => {
-        longFormRenderState.rendering = true
+        isRenderMoreContent.value = true
         nextTick(() => {
           setTimeout(() => {
-            longFormRenderState.rendered = true
-            longFormRenderState.rendering = false
+            articleDetailStore.renderFullContent()
+            isRenderMoreContent.value = false
           }, 0)
         })
       }
 
-      const contentElementIds = {
-        default: 'article-content',
-        leftover: 'more-article-content'
-      }
-
-      const observeLozad = (elementId: string) => {
-        const contentElement = element.value?.querySelector(`#${elementId}`)
-        const lozadElements = contentElement && contentElement.querySelectorAll(`.${LOZAD_CLASS_NAME}`)
+      const observeLozad = (elementID: string) => {
+        const contentElement = element.value?.querySelector(`#${elementID}`)
+        const lozadElements =
+          contentElement && contentElement.querySelectorAll(`.${LOZAD_CLASS_NAME}`)
         if (lozadElements?.length) {
           const lozadObserver = window.$lozad(lozadElements, {
-            loaded: element => element.classList.add(LOADED_CLASS_NAME)
+            loaded: (element) => element.classList.add(LOADED_CLASS_NAME)
           })
           lozadObserver.observe()
         }
       }
 
-      const handleContentAnimateDone = () => observeLozad(contentElementIds.default)
-      const handleRenderMoreAnimateDone = () => observeLozad(contentElementIds.leftover)
+      const handleRenderMoreAnimateDone = () => observeLozad(ARTICLE_CONTENT_ELEMENT_IDS.more)
+
+      const publishedAt = (date: string) => {
+        return humanizeYMD(date, i18n.language.value as any)
+      }
 
       onMounted(() => {
-        handleContentAnimateDone()
+        observeLozad(ARTICLE_CONTENT_ELEMENT_IDS.default)
       })
 
       return {
         LANGUAGE_KEYS,
+        i18n,
         element,
-        content,
+        publishedAt,
         isHybrid,
         isReprint,
         isOriginal,
-        isMobile,
-        isLongFormContent,
+        articleDetailStore,
         isRenderMoreEnabled,
-        longFormRenderState,
-        contentElementIds,
+        isRenderMoreContent,
+        ARTICLE_CONTENT_ELEMENT_IDS,
         handleRenderMore,
-        handleContentAnimateDone,
         handleRenderMoreAnimateDone
       }
     }
@@ -213,7 +162,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import 'src/assets/styles/init.scss';
+  @import 'src/styles/init.scss';
 
   .detail {
     padding: 1rem 2rem;
@@ -222,19 +171,6 @@
     height: auto;
     transition: height $transition-time-normal;
 
-    .skeleton {
-      .title {
-        width: 60%;
-        height: 26px;
-        margin: 2rem auto;
-      }
-
-      .content {
-        margin-top: 3rem;
-        margin-bottom: 1rem;
-      }
-    }
-
     .oirigin {
       position: absolute;
       top: -11px;
@@ -242,33 +178,51 @@
       transform: rotate(-45deg);
       width: 7rem;
       height: 4rem;
-      line-height: 5.8rem;
+      line-height: 5.6rem;
       text-align: center;
-      text-transform: uppercase;
       transform-origin: center;
-      color: $text-reversal;
+      color: $white;
       font-weight: bold;
       font-size: $font-size-small;
 
-      &.self {
-        background-color: rgba($accent, .8);
-      }
-      &.other {
-        background-color: rgba($red, .8);
+      &.original {
+        background-color: rgba($surmon, 0.7);
       }
       &.hybrid {
-        background-color: rgba($primary, .8);
+        background-color: rgba($accent, 0.7);
+      }
+      &.reprint {
+        background-color: rgba($red, 0.7);
       }
     }
 
     .knowledge {
       user-select: text;
+      position: relative;
 
       .title {
         margin: 1em 0 1.5em 0;
         text-align: center;
-        font-weight: 700;
-        font-size: $font-size-h2 * .95;
+
+        .text {
+          font-weight: 700;
+          font-size: $font-size-h2 * 0.95;
+          margin-bottom: $gap;
+        }
+
+        .meta {
+          display: inline-block;
+          color: $text-disabled;
+          font-size: $font-size-small;
+          user-select: none;
+          line-height: 2;
+          .iconfont {
+            margin-right: $xs-gap;
+          }
+          .vertical {
+            top: -1px;
+          }
+        }
       }
 
       .markdown-html {
@@ -278,17 +232,23 @@
       }
 
       .readmore {
+        position: absolute;
+        bottom: 0;
         width: 100%;
+        height: 16rem;
         display: flex;
         justify-content: center;
-        margin-bottom: $gap;
+        align-items: center;
+        background: linear-gradient(to top, $module-bg-hover, transparent);
 
         .readmore-btn {
           width: 80%;
-          text-align: center;
+          height: 3rem;
+          margin-top: 2rem;
           line-height: 3rem;
-          color: $text-secondary;
-          background-color: $module-bg-darker-1;
+          text-align: center;
+          color: $text-reversal;
+          background-color: $primary-lighter;
           @include background-transition();
           @include radius-box($xs-radius);
 
@@ -298,31 +258,10 @@
 
           &:hover {
             background-color: $primary;
-            color: $text-reversal;
           }
 
           .iconfont {
             margin-left: $sm-gap;
-          }
-        }
-      }
-    }
-
-    &.mobile {
-      padding: $gap $lg-gap;
-
-      > .oirigin {
-        font-size: $font-size-base;
-      }
-
-      > .knowledge {
-        > .content {
-          pre {
-            padding-left: 0;
-
-            > .code-lines {
-              display: none;
-            }
           }
         }
       }

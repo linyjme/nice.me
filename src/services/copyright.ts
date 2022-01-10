@@ -1,12 +1,28 @@
 /**
- * @file 复制拦截器
- * @module service/copyright
- * @author Linyj <https://github.com/Linyj>
+ * @file copyright
+ * @module service.copyright
+ * @author Surmon <https://github.com/surmon-china>
  */
 
 import { META } from '/@/config/app.config'
 
-export const enableCopyright = () => {
+declare global {
+  interface Window {
+    __isEnabledCopyrighter: boolean
+  }
+}
+
+export const enableCopyrighter = () => {
+  window.__isEnabledCopyrighter = true
+}
+
+export const disableCopyrighter = () => {
+  window.__isEnabledCopyrighter = false
+}
+
+export const initCopyrighter = () => {
+  enableCopyrighter()
+
   const copyText = () => {
     return [
       '',
@@ -19,12 +35,12 @@ export const enableCopyright = () => {
     ].join('\n')
   }
 
-  const buildText = content => content + copyText()
-  const buildHtml = content => content + copyText()
+  const buildText = (content) => content + copyText()
+  const buildHtml = (content) => content + copyText()
 
-  document.addEventListener('copy', event => {
+  document.addEventListener('copy', (event) => {
     if (!window.getSelection) return
-    if (!window.$isCopyFromApp) {
+    if (window.__isEnabledCopyrighter) {
       const content = window.getSelection()?.toString()
       event.clipboardData?.setData('text/plain', buildText(content))
       event.clipboardData?.setData('text/html', buildHtml(content))

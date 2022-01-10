@@ -27,7 +27,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import 'src/assets/styles/init.scss';
+  @import 'src/styles/init.scss';
 
   .empty {
     position: relative;
@@ -38,7 +38,7 @@
     text-align: center;
     justify-content: center;
     align-items: center;
-    color: $text-dividers;
-    letter-spacing: .1em;
+    color: $text-divider;
+    letter-spacing: 0.1em;
   }
 </style>

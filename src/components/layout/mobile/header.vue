@@ -1,69 +1,60 @@
 <template>
   <header class="header">
-    <div
-      class="search"
-      :class="{ actived: searchState.open }"
-    >
+    <div class="search" :class="{ actived: searchState.open }">
       <input
-        ref="inputElement"
-        v-model.trim="searchState.keyword"
-        type="text"
         class="input"
-        list="keywords"
+        ref="inputElement"
+        type="text"
+        maxlength="16"
         required
         :placeholder="t(LANGUAGE_KEYS.SEARCH_PLACEHOLDER)"
+        v-model.trim="searchState.keyword"
         @keyup.enter.stop.prevent="submitSearch"
-      >
+      />
       <span class="close" @click.stop.prevent="cancelSearch">
         <i class="iconfont icon-cancel"></i>
       </span>
-      <client-only>
-        <datalist
-          v-if="tags.length"
-          id="keywords"
-          class="search-keywords"
-        >
-          <option
-            class="iiem"
-            v-for="tag in tags"
-            :key="tag.slug"
-            :value="tag.name"
-            :label="tag.description"
-          />
-        </datalist>
-      </client-only>
     </div>
     <transition name="module">
       <div v-if="searchState.open" class="search-mask"></div>
     </transition>
     <nav class="navbar">
-      <a href class="navbar-menu" @click.stop.prevent="toggleSidebar">
+      <button class="navbar-menu" @click.stop.prevent="handleMenuToggle">
         <i class="iconfont icon-menu"></i>
-      </a>
+      </button>
       <router-link to="/" class="navbar-logo">
-<!--        <uimage cdn src="/images/logo.svg" />-->
+        <uimage cdn src="/images/logo.svg" />
       </router-link>
-      <a href class="navbar-search" @click.stop.prevent="openSearch">
-<!--        <i class="iconfont icon-search"></i>-->
-      </a>
+      <button class="navbar-search" @click.stop.prevent="openSearch">
+        <i class="iconfont icon-search"></i>
+      </button>
     </nav>
   </header>
 </template>
 
 <script lang="ts">
   import { defineComponent, computed, reactive, ref, watch, onMounted, nextTick } from 'vue'
-  import { useEnhancer } from '/@/enhancer'
-  import { RouteName } from '/@/router'
-  import { isSearchArchive } from '/@/transforms/route'
+  import { useEnhancer } from '/@/app/enhancer'
+  import { RouteName } from '/@/app/router'
+  import { isSearchFlow } from '/@/transforms/route'
   import { LANGUAGE_KEYS } from '/@/language/key'
-  import * as APP_CONFIG from '/@/config/app.config'
+
+  export enum MobileHeaderEvents {
+    Open = 'open',
+    Close = 'close'
+  }
 
   export default defineComponent({
     name: 'MobileHeader',
-    setup() {
-      const { store, i18n, route, router, globalState } = useEnhancer()
-      const isOpenedSidebar = computed(() => globalState.switchBox.mobileSidebar)
-      const tags = computed(() => store.state.tag.data)
+    props: {
+      opened: {
+        type: Boolean,
+        required: true
+      }
+    },
+    emits: [MobileHeaderEvents.Open, MobileHeaderEvents.Close],
+    setup(props, context) {
+      const { i18n, route, router } = useEnhancer()
       const inputElement = ref<HTMLInputElement>(null as any)
       const searchState = reactive({
         open: false,
@@ -71,24 +62,31 @@
       })
 
       onMounted(() => {
-        if (isSearchArchive(route.name as string)) {
+        if (isSearchFlow(route.name as string)) {
           searchState.keyword = route.params.keyword as string
         }
       })
 
-      const toggleSidebar = globalState.switchTogglers.mobileSidebar
+      const handleMenuToggle = () => {
+        context.emit(props.opened ? MobileHeaderEvents.Close : MobileHeaderEvents.Open)
+      }
+
       const openSearch = () => {
         searchState.open = true
-        nextTick(inputElement.value.focus)
+        nextTick(() => {
+          inputElement.value.focus()
+        })
       }
+
       const cancelSearch = () => {
         searchState.open = false
       }
+
       const submitSearch = () => {
         const keyword = searchState.keyword.trim()
         if (keyword) {
           router.push({
-            name: RouteName.SearchArchive,
+            name: RouteName.SearchFlow,
             params: { keyword }
           })
         }
@@ -99,7 +97,7 @@
         () => {
           nextTick(() => {
             cancelSearch()
-            toggleSidebar(false)
+            context.emit(MobileHeaderEvents.Close)
           })
         }
       )
@@ -107,23 +105,21 @@
       return {
         t: i18n.t,
         LANGUAGE_KEYS,
-        tags,
         searchState,
         inputElement,
         openSearch,
         submitSearch,
         cancelSearch,
-        isOpenedSidebar,
-        toggleSidebar
+        handleMenuToggle
       }
     }
   })
 </script>
 
 <style lang="scss" scoped>
-  @import 'src/assets/styles/init.scss';
+  @import 'src/styles/init.scss';
 
-  header {
+  .header {
     position: fixed;
     top: 0;
     left: 0;

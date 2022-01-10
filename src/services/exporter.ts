@@ -1,7 +1,7 @@
 /**
  * @file App exporter
- * @module service/exporter
- * @author Linyj <https://github.com/Linyj>
+ * @module service.exporter
+ * @author Surmon <https://github.com/surmon-china>
  */
 
 import { App } from 'vue'

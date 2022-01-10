@@ -1,53 +1,67 @@
 /**
  * @file comment helper
- * @author Linyj <https://github.com/Linyj>
+ * @author Surmon <https://github.com/surmon-china>
  */
 
-import { email as emailRegex } from '/@/constants/regex'
-import { getGravatarByEmail } from '/@/transforms/thumbnail'
-import { getFileCDNUrl } from '/@/transforms/url'
-import { scrollTo } from '/@/utils/scroller'
+import { getTargetCDNURL } from '/@/transforms/url'
 
 export const EMOJIS = [
-  '😃', '😂', '😅', '😉', '😌', '😔', '😓', '😢', '😍', '😘', '😜', '😡', '😤', '😭', '😱',
-  '😳', '😵', '🌚', '🙏', '👆', '👇', '👌', '🤘', '👍', '👎', '💪', '👏', '🌻', '🌹', '💊',
-  '🇨🇳', '🇺🇸', '🇯🇵 ', '🚩', '🐶', '❤️', '💔', '💩', '👻'
+  ...['😃', '😂', '😅', '😉', '😌', '😔', '😓', '😢', '😍', '😘', '😜', '😡'],
+  ...['😤', '😭', '😱', '😳', '😵', '🌚'],
+  ...['🙏', '👆', '👇', '👌', '🤘', '👍', '👎', '💪', '👏'],
+  ...['🌻', '🌹', '💊', '🐶', '❤️‍🔥', '💔', '💩', '👻', '🚩']
 ]
 
-export enum CommentEvent {
-  Reply = 'reply',
-  Like = 'like',
+export enum CommentEvents {
   Sort = 'sort',
   Page = 'page',
-  CancelReply = 'cancel-reply',
-  SyncProfile = 'update:profile',
-  SaveProfile = 'save-profile',
-  EditProfile = 'edit-profile',
-  ClearProfile = 'clear-profile',
-  CancelProfile = 'cancel-profile',
-  TogglePreview = 'toggle-preview',
+  Vote = 'vote',
+  Blossom = 'blossom',
+  Delete = 'delete',
+  Reply = 'reply',
+  CancelReply = 'cancelReply',
   Submit = 'submit'
 }
 
-export enum ElementID {
-  Warpper = 'comment-warpper',
-  Publisher = 'comment-publisher',
+export const getDisqusUserURL = (username: string) => {
+  return `https://disqus.com/by/${username}/`
 }
 
-export const getCommentElementId = (commentId: string | number): string => {
-  return `comment-item-${commentId}`
-}
+const HAHA_KEYWORDS = ['2333', 'haha', '哈哈']
+const SIX_KEYWORDS = ['666', '赞', '棒', '优秀']
+const HEHE_KEYWORDS = ['呵呵']
 
-export const humanizeGravatarUrlByEmail = (email: string) => {
-  return emailRegex.test(email)
-    // ? getGravatarByEmail(email) # TODO 评论图片bug
-    ? getFileCDNUrl('/images/comment/anonymous.jpg')
-    : getFileCDNUrl('/images/comment/anonymous.jpg')
-}
-
-export const scrollToElementAnchor = (elementId: string, offset = 0) => {
-  const targetElement = document.getElementById(elementId)
-  if (targetElement) {
-    scrollTo(targetElement, 200, { offset })
+export const luanchEmojiRain = (content: string) => {
+  const luanchRain = (window as any).$luanchEmojiRain
+  if (HAHA_KEYWORDS.find((keyword) => content.includes(keyword))) {
+    luanchRain({
+      speed: 12,
+      staggered: true,
+      increaseSpeed: 0.4,
+      emoji: getTargetCDNURL('/images/emojis/haha.png')
+    })
+  } else if (SIX_KEYWORDS.find((keyword) => content.includes(keyword))) {
+    luanchRain({
+      speed: 12,
+      staggered: true,
+      increaseSpeed: 0.4,
+      emoji: getTargetCDNURL('/images/emojis/666.png')
+    })
+  } else if (HEHE_KEYWORDS.find((keyword) => content.includes(keyword))) {
+    luanchRain({
+      staggered: false,
+      speed: 8,
+      increaseSpeed: 0.04,
+      emoji: getTargetCDNURL('/images/emojis/hehe.png')
+    })
+  } else if (Math.random() <= 0.5) {
+    // 否则以 50% 的概率随机出现
+    luanchRain({
+      scale: 0.6,
+      staggered: true,
+      speed: 8,
+      increaseSpeed: 0.04,
+      emoji: getTargetCDNURL('/images/emojis/doge.png')
+    })
   }
 }

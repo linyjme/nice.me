@@ -1,7 +1,7 @@
 /**
- * @file Client util
- * @module util/effects
- * @author Linyj <https://github.com/Linyj>
+ * @file Client effects
+ * @module util.effects
+ * @author Surmon <https://github.com/surmon-china>
  */
 
 import { nextTick } from 'vue'
@@ -18,5 +18,3 @@ export const nextScreen = () => {
     })
   })
 }
-
-

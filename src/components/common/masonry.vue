@@ -1,18 +1,13 @@
 <template>
   <div class="masonry">
-    <ul
-      class="list"
-      :class="listClass"
-      :key="index"
-      v-for="(columnData, index) in columnDatas"
-    >
-      <slot v-bind="item" v-for="item in columnData"></slot>
+    <ul class="list" :class="listClass" :key="index" v-for="(columnData, index) in columnDatas">
+      <slot v-bind="{ item, index: i }" v-for="(item, i) in columnData"></slot>
     </ul>
   </div>
 </template>
 
 <script lang="ts">
-  import { defineComponent, h, PropType } from 'vue'
+  import { defineComponent, PropType } from 'vue'
 
   const createNumberArray = (count: number) => {
     return Array.from(Array(count).keys())
@@ -36,11 +31,9 @@
       let index = 0
       const columnDatas = createNumberArray(props.columns).map(() => [] as any[])
       // 分配数据
-      props.data.forEach(item => {
+      props.data.forEach((item) => {
         columnDatas[index].push(item)
-        index = index === props.columns - 1
-          ? 0
-          : index + 1
+        index = index === props.columns - 1 ? 0 : index + 1
       })
 
       return {
@@ -51,7 +44,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import 'src/assets/styles/init.scss';
+  @import 'src/styles/init.scss';
   .masonry {
     display: flex;
     justify-content: space-between;

@@ -1,18 +1,14 @@
 <template>
   <span class="ua">
     <span class="os">
-      <i
-        v-if="osIconName"
-        class="iconfont"
-        :class="`icon-${osIconName}`"
-      />
+      <i v-if="osIconName" class="iconfont" :class="`icon-${osIconName}`" />
       <span>{{ uaResult.result.os.name }}</span>
-      <span>{{ uaResult.result.os.version }}</span>
+      <!-- <span>{{ uaResult.result.os.version }}</span> -->
     </span>
     <span class="browser">
-      <i class="iconfont" :class="`icon-${browserIconName}`" />
+      <i class="iconfont" v-if="browserIconName" :class="`icon-${browserIconName}`" />
       <span>{{ uaResult.result.browser.name }}</span>
-      <span>{{ uaResult.result.browser.major }}</span>
+      <!-- <span>{{ uaResult.result.browser.version }}</span> -->
     </span>
   </span>
 </template>
@@ -23,31 +19,32 @@
 
   // https://github.com/faisalman/ua-parser-js#methods
   const osIconsNameMap = {
-    'Mac OS': 'mac',
-    'Windows': 'windows',
-    'Android': 'android',
-    'Ubuntu': 'ubuntu',
-    'Linux': 'linux',
-    'iOS': 'mac',
-    'Unix': 'unix'
+    'Mac OS': 'apple',
+    Windows: 'windows',
+    Android: 'android',
+    Ubuntu: 'ubuntu',
+    Linux: 'linux',
+    iOS: 'apple',
+    Unix: 'unix'
   }
 
   const browersIconsNameMap = {
-    'Chrome': 'chrome',
-    'Chromium': 'chrome',
-    'WeChat': 'wechat',
-    'Safari': 'safari',
+    Chrome: 'chrome',
+    Chromium: 'chrome',
+    WeChat: 'wechat',
+    QQ: 'qq',
+    Safari: 'safari',
     'Mobile Safari': 'safari',
-    'UCBrowser': 'uc',
-    'Maxthon': 'maxthon',
-    'Firefox': 'firefox',
-    'IE': 'ie',
-    'Opera': 'opera',
-    'Edge': 'edge'
+    UCBrowser: 'uc',
+    Maxthon: 'maxthon',
+    Firefox: 'firefox',
+    IE: 'ie',
+    Opera: 'opera',
+    Edge: 'edge'
   }
 
   export default defineComponent({
-    name: 'CommentUa',
+    name: 'CommentItemUA',
     props: {
       ua: {
         type: String,
@@ -73,3 +70,17 @@
     }
   })
 </script>
+
+<style lang="scss" scoped>
+  @import 'src/styles/init.scss';
+
+  .ua {
+    .iconfont {
+      margin-right: $xs-gap;
+    }
+
+    .os {
+      margin-right: $sm-gap;
+    }
+  }
+</style>

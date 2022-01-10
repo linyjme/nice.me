@@ -2,13 +2,11 @@
 
 *.discard
 node_modules
+scripts
 
-.vun
-.deploy
 dist
 public
 src/patchs
 
-.eslintrc.js
 *.config.js
 *.json
